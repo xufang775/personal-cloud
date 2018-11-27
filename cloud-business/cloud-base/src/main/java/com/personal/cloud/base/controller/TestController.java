@@ -20,4 +20,9 @@ public class TestController {
     public String test2(){
         return "测试!这个文件已经合并到master分支了，现在在此文件中添加test2()";
     }
+
+    @GetMapping("test3")
+    public String test3(){
+        return "测试!这个函数是从master分支提交的";
+    }
 }
