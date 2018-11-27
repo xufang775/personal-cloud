@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.personal.cloud.cost.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.personal.cloud.base.entity.SysUser">
+    <id column="Id" jdbcType="VARCHAR" property="id" />
+    <result column="userName" jdbcType="VARCHAR" property="userName" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="password2" jdbcType="VARCHAR" property="password2" />
+    <result column="userPhone" jdbcType="VARCHAR" property="userPhone" />
+    <result column="userSex" jdbcType="BIT" property="userSex" />
+    <result column="userBirth" jdbcType="DATE" property="userBirth" />
+    <result column="realName" jdbcType="VARCHAR" property="realName" />
+    <result column="registerTime" jdbcType="TIMESTAMP" property="registerTime" />
+    <result column="role" jdbcType="VARCHAR" property="role" />
+    <result column="permission" jdbcType="VARCHAR" property="permission" />
+    <result column="enabled" jdbcType="BIT" property="enabled" />
+    <result column="deleteFlag" jdbcType="BIT" property="deleteFlag" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="lastLoginTime" jdbcType="TIMESTAMP" property="lastLoginTime" />
+  </resultMap>
+  <select id="getRolePermission" parameterType="String" resultType="String">
+    SELECT role.permission
+    FROM sys_user, sys_role
+    WHERE username = #{username} AND role.role = user.role
+  </select>
+</mapper>
