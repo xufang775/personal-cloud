@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e8624e94-ff61-483c-88ad-b610bbdbd6bf" name="Default" comment="添加另外1个业务模块，config">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="" />
+    <list default="true" id="e8624e94-ff61-483c-88ad-b610bbdbd6bf" name="Default" comment="">
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -98,11 +93,13 @@
       <file leaf-file-name="TestController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cloud-business/cloud-base/src/main/java/com/personal/cloud/base/controller/TestController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+            <state relative-caret-position="419">
+              <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
               <folding>
                 <element signature="e#395#396#0" expanded="true" />
                 <element signature="e#434#435#0" expanded="true" />
+                <element signature="e#487#488#0" expanded="true" />
+                <element signature="e#550#551#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1106,7 +1103,7 @@
       <option name="presentableId" value="Default" />
       <updated>1542972291992</updated>
       <workItem from="1542972295535" duration="4969000" />
-      <workItem from="1543195578674" duration="19897000" />
+      <workItem from="1543195578674" duration="20113000" />
     </task>
     <task id="LOCAL-00001" summary="修改readme.md">
       <created>1542973067636</created>
@@ -1185,11 +1182,18 @@
       <option name="project" value="LOCAL" />
       <updated>1543283404086</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="不提交.idea文件夹">
+      <created>1543283627465</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1543283627465</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24866000" />
+    <option name="totallyTimeSpent" value="25082000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1255,7 +1259,8 @@
     <MESSAGE value="添加一个测试控制器，用来调试分支" />
     <MESSAGE value="#" />
     <MESSAGE value="在test控制器中添加一个test2()" />
-    <option name="LAST_COMMIT_MESSAGE" value="在test控制器中添加一个test2()" />
+    <MESSAGE value="不提交.idea文件夹" />
+    <option name="LAST_COMMIT_MESSAGE" value="不提交.idea文件夹" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1741,11 +1746,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cloud-business/cloud-base/src/main/java/com/personal/cloud/base/controller/TestController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+        <state relative-caret-position="419">
+          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding>
             <element signature="e#395#396#0" expanded="true" />
             <element signature="e#434#435#0" expanded="true" />
+            <element signature="e#487#488#0" expanded="true" />
+            <element signature="e#550#551#0" expanded="true" />
           </folding>
         </state>
       </provider>
