@@ -31,4 +31,5 @@ public class CostItemController {
         List<CostItem> list = this.costItemMapper.selectByExample(example);
         return list;
     }
+
 }
