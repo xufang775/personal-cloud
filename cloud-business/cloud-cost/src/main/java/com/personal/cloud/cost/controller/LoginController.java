@@ -70,7 +70,7 @@ public class LoginController {
     }
 
 
-    @RequestMapping(path="/unauthorized/{message}")
+    @GetMapping(path="/unauthorized/{message}")
     public ResultMap unauthorized(@PathVariable String message) throws UnavailableException{
         return resultMap.success().code(401).message(message);
     }

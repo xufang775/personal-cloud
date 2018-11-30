@@ -53,18 +53,19 @@
         <!--<table tableName="cost_item" >-->
             <!--<property name="useActualColumnNames" value="true"/>-->
         <!--</table>-->
-        <!--<table tableName="cost_record">-->
-            <!--<property name="useActualColumnNames" value="true"/>-->
-        <!--</table>-->
+        <table tableName="cost_record">
+            <property name="useActualColumnNames" value="true"/>
+            <property name="modelOnly" value="true"/>
+        </table>
         <!--<table tableName="cost_tag">-->
             <!--<property name="useActualColumnNames" value="true"/>-->
         <!--</table>-->
-        <table tableName="sys_user">
-            <property name="useActualColumnNames" value="true"/>
-        </table>
-        <table tableName="sys_role">
-            <property name="useActualColumnNames" value="true"/>
-        </table>
+        <!--<table tableName="sys_user">-->
+            <!--<property name="useActualColumnNames" value="true"/>-->
+        <!--</table>-->
+        <!--<table tableName="sys_role">-->
+            <!--<property name="useActualColumnNames" value="true"/>-->
+        <!--</table>-->
         <!--<table tableName="cost_tag" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
         <!--<table tableName="cost_tag_assign" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
         <!--<table tableName="sys_role" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->

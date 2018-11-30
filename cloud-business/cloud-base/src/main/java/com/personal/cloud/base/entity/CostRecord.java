@@ -12,15 +12,15 @@ import java.util.Date;
 @Table(name = "cost_record")
 public class CostRecord extends BaseEntity {
 
-    private String userId;
+    private String costUserId;
 
-    private String itemId;
+    private String costItemId;
 
-    private Date costTime;
+    private Date costDate;
 
-    private String costMoney;
+    private Double costPrice;
 
-    private Date addTime;
+    private Date addDate;
 
     private Boolean deleteFlag;
 

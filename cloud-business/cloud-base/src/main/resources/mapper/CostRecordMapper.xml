@@ -4,11 +4,11 @@
   <resultMap id="BaseResultMap" type="com.personal.cloud.base.entity.CostRecord">
     <constructor>
       <arg column="id" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="userId" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="itemId" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="costTime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
-      <arg column="costMoney" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="addTime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="costUserId" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="costItemId" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="costDate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="costPrice" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="addDate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
       <arg column="deleteFlag" javaType="java.lang.Boolean" jdbcType="BIT" />
     </constructor>
   </resultMap>
@@ -71,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, userId, itemId, costTime, costMoney, addTime, deleteFlag
+    id, costUserId, costItemId, costDate, costPrice, addDate, deleteFlag
   </sql>
   <select id="selectByExample" parameterType="com.personal.cloud.base.entity.CostRecordExample" resultMap="BaseResultMap">
     select
@@ -94,11 +94,11 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.personal.cloud.base.entity.CostRecord">
-    insert into cost_record (id, userId, itemId, 
-      costTime, costMoney, addTime, 
+    insert into cost_record (id, costUserId, costItemId, 
+      costDate, costPrice, addDate, 
       deleteFlag)
-    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{itemId,jdbcType=VARCHAR}, 
-      #{costTime,jdbcType=TIMESTAMP}, #{costMoney,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, 
+    values (#{id,jdbcType=VARCHAR}, #{costUserId,jdbcType=VARCHAR}, #{costItemId,jdbcType=VARCHAR}, 
+      #{costDate,jdbcType=TIMESTAMP}, #{costPrice,jdbcType=VARCHAR}, #{addDate,jdbcType=TIMESTAMP}, 
       #{deleteFlag,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="com.personal.cloud.base.entity.CostRecord">
@@ -107,20 +107,20 @@
       <if test="id != null">
         id,
       </if>
-      <if test="userId != null">
-        userId,
+      <if test="costUserId != null">
+        costUserId,
       </if>
-      <if test="itemId != null">
-        itemId,
+      <if test="costItemId != null">
+        costItemId,
       </if>
-      <if test="costTime != null">
-        costTime,
+      <if test="costDate != null">
+        costDate,
       </if>
-      <if test="costMoney != null">
-        costMoney,
+      <if test="costPrice != null">
+        costPrice,
       </if>
-      <if test="addTime != null">
-        addTime,
+      <if test="addDate != null">
+        addDate,
       </if>
       <if test="deleteFlag != null">
         deleteFlag,
@@ -130,20 +130,20 @@
       <if test="id != null">
         #{id,jdbcType=VARCHAR},
       </if>
-      <if test="userId != null">
-        #{userId,jdbcType=VARCHAR},
+      <if test="costUserId != null">
+        #{costUserId,jdbcType=VARCHAR},
       </if>
-      <if test="itemId != null">
-        #{itemId,jdbcType=VARCHAR},
+      <if test="costItemId != null">
+        #{costItemId,jdbcType=VARCHAR},
       </if>
-      <if test="costTime != null">
-        #{costTime,jdbcType=TIMESTAMP},
+      <if test="costDate != null">
+        #{costDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="costMoney != null">
-        #{costMoney,jdbcType=VARCHAR},
+      <if test="costPrice != null">
+        #{costPrice,jdbcType=VARCHAR},
       </if>
-      <if test="addTime != null">
-        #{addTime,jdbcType=TIMESTAMP},
+      <if test="addDate != null">
+        #{addDate,jdbcType=TIMESTAMP},
       </if>
       <if test="deleteFlag != null">
         #{deleteFlag,jdbcType=BIT},
@@ -162,20 +162,20 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=VARCHAR},
       </if>
-      <if test="record.userId != null">
-        userId = #{record.userId,jdbcType=VARCHAR},
+      <if test="record.costUserId != null">
+        costUserId = #{record.costUserId,jdbcType=VARCHAR},
       </if>
-      <if test="record.itemId != null">
-        itemId = #{record.itemId,jdbcType=VARCHAR},
+      <if test="record.costItemId != null">
+        costItemId = #{record.costItemId,jdbcType=VARCHAR},
       </if>
-      <if test="record.costTime != null">
-        costTime = #{record.costTime,jdbcType=TIMESTAMP},
+      <if test="record.costDate != null">
+        costDate = #{record.costDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.costMoney != null">
-        costMoney = #{record.costMoney,jdbcType=VARCHAR},
+      <if test="record.costPrice != null">
+        costPrice = #{record.costPrice,jdbcType=VARCHAR},
       </if>
-      <if test="record.addTime != null">
-        addTime = #{record.addTime,jdbcType=TIMESTAMP},
+      <if test="record.addDate != null">
+        addDate = #{record.addDate,jdbcType=TIMESTAMP},
       </if>
       <if test="record.deleteFlag != null">
         deleteFlag = #{record.deleteFlag,jdbcType=BIT},
@@ -188,11 +188,11 @@
   <update id="updateByExample" parameterType="map">
     update cost_record
     set id = #{record.id,jdbcType=VARCHAR},
-      userId = #{record.userId,jdbcType=VARCHAR},
-      itemId = #{record.itemId,jdbcType=VARCHAR},
-      costTime = #{record.costTime,jdbcType=TIMESTAMP},
-      costMoney = #{record.costMoney,jdbcType=VARCHAR},
-      addTime = #{record.addTime,jdbcType=TIMESTAMP},
+      costUserId = #{record.costUserId,jdbcType=VARCHAR},
+      costItemId = #{record.costItemId,jdbcType=VARCHAR},
+      costDate = #{record.costDate,jdbcType=TIMESTAMP},
+      costPrice = #{record.costPrice,jdbcType=VARCHAR},
+      addDate = #{record.addDate,jdbcType=TIMESTAMP},
       deleteFlag = #{record.deleteFlag,jdbcType=BIT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
