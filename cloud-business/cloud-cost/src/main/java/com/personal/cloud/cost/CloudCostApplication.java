@@ -22,8 +22,8 @@ public class CloudCostApplication {
 		SpringApplication.run(CloudCostApplication.class, args);
 	}
 
-//	@RequestMapping("/")
-//	void home(HttpServletResponse response) throws IOException {
-//		response.sendRedirect("swagger-ui.html");
-//	}
+	@RequestMapping("/")
+	void home(HttpServletResponse response) throws IOException {
+		response.sendRedirect("swagger-ui.html");
+	}
 }

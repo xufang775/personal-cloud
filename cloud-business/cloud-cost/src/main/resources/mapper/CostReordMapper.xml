@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.personal.cloud.cost.mapper.CostRecordEMapper">
+  <resultMap id="BaseResultMap" type="com.personal.cloud.cost.model.CostRecordHasDic">
+    <constructor>
+      <arg column="id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="costUserId" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="costItemId" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="costItemName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="costDate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="costPrice" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="addDate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="deleteFlag" javaType="java.lang.Boolean" jdbcType="BIT" />
+    </constructor>
+  </resultMap>
+  <!--<select id="selectAllHasDic" resultType="com.personal.cloud.cost.model.CostRecordHasDic">-->
+    <!--SELECT a.*-->
+    <!--,(select itemName from cost_item b where b.id=a.costItemId) as costItemName-->
+    <!--FROM cost_record a-->
+    <!--WHERE a.deleteFlag = 0-->
+  <!--</select>-->
+</mapper>

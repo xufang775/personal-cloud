@@ -16,12 +16,14 @@ public class ResultMap extends HashMap<String, Object> {
 
     public ResultMap success() {
         this.put("result", "success");
+        this.put("success",true);
         this.put("code", HttpCode.success);
         return this;
     }
 
     public ResultMap fail() {
         this.put("result", "fail");
+        this.put("success",false);
         this.put("code", HttpCode.fail);
         return this;
     }
