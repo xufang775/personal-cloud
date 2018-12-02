@@ -11,7 +11,7 @@ public interface CostRecordMapper extends BaseMapper<CostRecord> {
 
     int deleteByExample(CostRecordExample example);
 
-    int insert(CostRecord record);
+//    int insert(CostRecord record);
 
     int insertSelective(CostRecord record);
 

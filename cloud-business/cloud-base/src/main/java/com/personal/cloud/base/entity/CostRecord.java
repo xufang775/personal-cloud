@@ -24,4 +24,6 @@ public class CostRecord extends BaseEntity {
 
     private Boolean deleteFlag;
 
+    private String remark;
+
 }
