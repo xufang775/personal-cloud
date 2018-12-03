@@ -66,6 +66,13 @@ public class CostRecordServiceImpl implements CostRecordService {
         return this.costRecordEMapper.selectAllHasDic();
     }
 
+    public List<CostRecordHasDic> getPageListAA(CostRecordSearch search){
+        if(search.getPage() != null && search.getRows() != null){
+            PageHelper.startPage(search.getPage(),search.getRows());
+        }
+        return this.costRecordEMapper.selectAllAA();
+    }
+
     public boolean insert(CostRecord record){
         record.setId(UUID.randomUUID().toString());
         record.setAddDate(new Date());
@@ -78,6 +85,15 @@ public class CostRecordServiceImpl implements CostRecordService {
         } else {
             return false;
         }
+    }
+    public int insertList(List<CostRecord> list){
+        for (CostRecord item:list) {
+            item.setId(UUID.randomUUID().toString());
+            item.setAddDate(new Date());
+        }
+
+        int res = this.costRecordEMapper.insertBatch(list);
+        return res;
     }
 
     public int delete(List<String> ids){

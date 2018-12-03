@@ -13,10 +13,24 @@
       <arg column="deleteFlag" javaType="java.lang.Boolean" jdbcType="BIT" />
     </constructor>
   </resultMap>
-  <!--<select id="selectAllHasDic" resultType="com.personal.cloud.cost.model.CostRecordHasDic">-->
-    <!--SELECT a.*-->
-    <!--,(select itemName from cost_item b where b.id=a.costItemId) as costItemName-->
-    <!--FROM cost_record a-->
-    <!--WHERE a.deleteFlag = 0-->
-  <!--</select>-->
+  <select id="selectAllAA" resultType="com.personal.cloud.cost.model.CostRecordHasDic">
+    SELECT a.*
+    ,(select itemName from cost_item b where b.id=a.costItemId) as costItemName
+    FROM cost_record a
+    WHERE a.deleteFlag = 0
+  </select>
+  <!-- 批量插入数据 -->
+  <insert id="insertBatch" parameterType="java.util.List">
+    <!--<selectKey resultType="long" keyProperty="id" order="AFTER">-->
+      <!--SELECT UUID()-->
+    <!--</selectKey>-->
+    insert into cost_record
+    (id,costItemId,costDate,costPrice,addDate,remark,deleteFlag)
+    values
+    <foreach item="item" collection="list" separator="," index="">
+      (
+      #{item.id},#{item.costItemId},#{item.costDate},#{item.costPrice},#{item.addDate},#{item.remark},0
+      )
+    </foreach>
+  </insert>
 </mapper>

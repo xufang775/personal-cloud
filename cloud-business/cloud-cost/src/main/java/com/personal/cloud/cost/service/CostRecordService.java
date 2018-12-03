@@ -13,9 +13,13 @@ public interface CostRecordService {
 
     List<CostRecordHasDic> getPageListNew(CostRecordSearch search);
 
+    List<CostRecordHasDic> getPageListAA(CostRecordSearch search);
+
     List<CostRecord> getPageList(CostRecordSearch search);
 
     boolean insert(CostRecord record);
+
+    int insertList(List<CostRecord> list);
 
     int delete(List<String> ids);
 }

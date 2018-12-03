@@ -61,11 +61,24 @@ public class CostRecordController extends BaseController {
             return resultMap.fail();
         }
     }
-    @PostMapping("/save")
+    @PostMapping("/insert")
     @ApiOperation(value = "保存消费项目")
     public ResultMap save(@RequestBody CostRecord param){
         try{
             this.service.insert(param);
+            return resultMap.success();
+        } catch (Exception e){
+            e.printStackTrace();
+            String msg = "分页查询出错："+e.getMessage();
+            logger.error(msg);
+            return resultMap.fail().message(msg);
+        }
+    }
+    @PostMapping("/insertList")
+    @ApiOperation(value = "保存消费项目")
+    public ResultMap save(@RequestBody List<CostRecord> param){
+        try{
+            this.service.insertList(param);
             return resultMap.success();
         } catch (Exception e){
             e.printStackTrace();
@@ -86,7 +99,19 @@ public class CostRecordController extends BaseController {
             logger.error(msg);
             return resultMap.fail().message(msg);
         }
-
+    }
+    @PostMapping("/test")
+    @ApiOperation(value = "获取消费项目列表-分页")
+    public ResultMap test(@RequestBody MyRequestParam<CostRecordSearch> param){
+        try{
+            List<CostRecordHasDic> list = this.service.getPageListAA(param.data);
+            return resultMap.success().data(list);
+        } catch (Exception e){
+            e.printStackTrace();
+            String msg = "分页查询出错："+e.getMessage();
+            logger.error(msg);
+            return resultMap.fail().message(msg);
+        }
     }
 
 }
