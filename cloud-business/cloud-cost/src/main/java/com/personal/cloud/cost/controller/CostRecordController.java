@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.personal.cloud.base.entity.CostItem;
 import com.personal.cloud.base.entity.CostRecord;
 import com.personal.cloud.base.util.MyRequestParam;
+import com.personal.cloud.base.util.PageParam;
 import com.personal.cloud.cost.model.CostRecordHasDic;
 import com.personal.cloud.cost.model.CostRecordSearch;
 import com.personal.cloud.cost.service.CostRecordService;
@@ -46,9 +47,9 @@ public class CostRecordController extends BaseController {
     }
     @PostMapping("/pageListHasDic")
     @ApiOperation(value = "获取消费项目列表-分页")
-    public ResultMap getPageListHasDic(@RequestBody MyRequestParam<CostRecordSearch> param){
+    public ResultMap getPageListHasDic(@RequestBody PageParam<CostRecordSearch> param){
         try{
-            List<CostRecordHasDic> list = service.getPageListNew(param.data);
+            List<CostRecordHasDic> list = service.getPageListNew(param);
 //            List<CostRecordHasDic> list = service.getPageListNew(param.data);
             if(list.size()>0){
                 return this.resultMap.success().data(new PageInfo<>(list));
@@ -93,19 +94,6 @@ public class CostRecordController extends BaseController {
         try{
             this.service.delete(ids);
             return resultMap.success();
-        } catch (Exception e){
-            e.printStackTrace();
-            String msg = "分页查询出错："+e.getMessage();
-            logger.error(msg);
-            return resultMap.fail().message(msg);
-        }
-    }
-    @PostMapping("/test")
-    @ApiOperation(value = "获取消费项目列表-分页")
-    public ResultMap test(@RequestBody MyRequestParam<CostRecordSearch> param){
-        try{
-            List<CostRecordHasDic> list = this.service.getPageListAA(param.data);
-            return resultMap.success().data(list);
         } catch (Exception e){
             e.printStackTrace();
             String msg = "分页查询出错："+e.getMessage();

@@ -1,6 +1,7 @@
 package com.personal.cloud.cost.service;
 
 import com.personal.cloud.base.entity.CostRecord;
+import com.personal.cloud.base.util.PageParam;
 import com.personal.cloud.cost.model.CostRecordHasDic;
 import com.personal.cloud.cost.model.CostRecordSearch;
 
@@ -11,9 +12,7 @@ import java.util.List;
  */
 public interface CostRecordService {
 
-    List<CostRecordHasDic> getPageListNew(CostRecordSearch search);
-
-    List<CostRecordHasDic> getPageListAA(CostRecordSearch search);
+    List<CostRecordHasDic> getPageListNew(PageParam<CostRecordSearch> search);
 
     List<CostRecord> getPageList(CostRecordSearch search);
 

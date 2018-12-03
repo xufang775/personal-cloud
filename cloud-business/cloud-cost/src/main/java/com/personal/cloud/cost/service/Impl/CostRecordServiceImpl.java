@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.personal.cloud.base.entity.CostRecord;
 import com.personal.cloud.base.entity.CostRecordExample;
 import com.personal.cloud.base.mapper.CostRecordMapper;
+import com.personal.cloud.base.util.PageParam;
 import com.personal.cloud.cost.mapper.CostRecordEMapper;
 import com.personal.cloud.cost.model.CostRecordHasDic;
 import com.personal.cloud.cost.model.CostRecordSearch;
@@ -34,9 +35,9 @@ public class CostRecordServiceImpl implements CostRecordService {
     }
 
     public List<CostRecord> getPageList(CostRecordSearch search){
-        if(search.getPage() != null && search.getRows() != null){
-            PageHelper.startPage(search.getPage(),search.getRows());
-        }
+//        if(search.getPage() != null && search.getRows() != null){
+//            PageHelper.startPage(search.getPage(),search.getRows());
+//        }
         CostRecordExample example = new CostRecordExample();
         CostRecordExample.Criteria criteria = example.createCriteria();
         // 处理消费开始时间，结束时间的查询
@@ -59,18 +60,11 @@ public class CostRecordServiceImpl implements CostRecordService {
         return this.costRecordMapper.selectByExample(example);
     }
 
-    public List<CostRecordHasDic> getPageListNew(CostRecordSearch search){
+    public List<CostRecordHasDic> getPageListNew(PageParam<CostRecordSearch> search){
         if(search.getPage() != null && search.getRows() != null){
             PageHelper.startPage(search.getPage(),search.getRows());
         }
-        return this.costRecordEMapper.selectAllHasDic();
-    }
-
-    public List<CostRecordHasDic> getPageListAA(CostRecordSearch search){
-        if(search.getPage() != null && search.getRows() != null){
-            PageHelper.startPage(search.getPage(),search.getRows());
-        }
-        return this.costRecordEMapper.selectAllAA();
+        return this.costRecordEMapper.selectAllHasDic(search.getParams());
     }
 
     public boolean insert(CostRecord record){

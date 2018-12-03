@@ -13,12 +13,33 @@
       <arg column="deleteFlag" javaType="java.lang.Boolean" jdbcType="BIT" />
     </constructor>
   </resultMap>
-  <select id="selectAllAA" resultType="com.personal.cloud.cost.model.CostRecordHasDic">
+
+  <select id="selectAllHasDic" parameterType="com.personal.cloud.cost.model.CostRecordSearch" resultType="com.personal.cloud.cost.model.CostRecordHasDic">
     SELECT a.*
     ,(select itemName from cost_item b where b.id=a.costItemId) as costItemName
     FROM cost_record a
     WHERE a.deleteFlag = 0
+    <if test="costDateStart != null ">
+      and a.costDate >= #{costDateStart}
+    </if>
+    <if test="costDateEnd != null ">
+      and a.costDate &lt;= #{costDateEnd}
+    </if>
+    <if test="costPriceStart != null ">
+      and a.costPrice >= #{costPriceStart}
+    </if>
+    <if test="costDateEnd != null ">
+      and a.costPrice &lt;= #{costPriceEnd}
+    </if>
+    <if test="costItemId != null ">
+      and a.costItemId = #{costItemId}
+    </if>
+    <if test="remark != null ">
+      and a.remark like concat('%',#{remark},'%')
+    </if>
+    order by a.costDate desc
   </select>
+
   <!-- 批量插入数据 -->
   <insert id="insertBatch" parameterType="java.util.List">
     <!--<selectKey resultType="long" keyProperty="id" order="AFTER">-->

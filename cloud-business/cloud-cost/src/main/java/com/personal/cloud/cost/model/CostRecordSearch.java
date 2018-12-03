@@ -14,7 +14,7 @@ import java.util.Date;
 @Getter
 @Setter
 @ApiModel(value = "消费项目查询")
-public class CostRecordSearch extends BaseSearch {
+public class CostRecordSearch {
     @ApiModelProperty(value = "消费开始时间")
     public Date costDateStart;
     @ApiModelProperty(value = "消费结束时间")
@@ -23,4 +23,6 @@ public class CostRecordSearch extends BaseSearch {
     public Double costPriceStart;
     @ApiModelProperty(value = "消费金额-结束")
     public Double costPriceEnd;
+    public String costItemId;
+    public String remark;
 }
