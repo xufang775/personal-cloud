@@ -1,9 +1,11 @@
 package com.personal.cloud.cost.model;
 
+import com.personal.cloud.base.entity.CostRecord;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -26,4 +28,8 @@ public class CostRecordHasDic {
     private Boolean deleteFlag;
 
     private String remark;
+
+    private String itemCode;
+
+    private List<CostRecordHasDic> details;
 }

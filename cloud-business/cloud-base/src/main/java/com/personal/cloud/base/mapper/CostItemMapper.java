@@ -11,8 +11,6 @@ public interface CostItemMapper extends BaseMapper<CostItem> {
 
     int deleteByExample(CostItemExample example);
 
-    int insert(CostItem record);
-
     int insertSelective(CostItem record);
 
     List<CostItem> selectByExample(CostItemExample example);

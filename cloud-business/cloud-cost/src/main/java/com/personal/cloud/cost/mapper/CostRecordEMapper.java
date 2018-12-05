@@ -16,5 +16,9 @@ public interface CostRecordEMapper {
 //            "    WHERE a.deleteFlag = 0 order by a.costDate desc")
     List<CostRecordHasDic> selectAllHasDic(CostRecordSearch search);
 
+    List<CostRecordHasDic> selectAllByDate(CostRecordSearch search);
+
+    List<CostRecordHasDic> selectMonthRecordForTable(CostRecordSearch search);
+
     int insertBatch(@Param("list")List<CostRecord> list);
 }

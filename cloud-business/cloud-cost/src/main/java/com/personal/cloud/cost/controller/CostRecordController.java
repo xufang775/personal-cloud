@@ -45,6 +45,7 @@ public class CostRecordController extends BaseController {
             return resultMap.fail();
         }
     }
+
     @PostMapping("/pageListHasDic")
     @ApiOperation(value = "获取消费项目列表-分页")
     public ResultMap getPageListHasDic(@RequestBody PageParam<CostRecordSearch> param){
@@ -62,11 +63,46 @@ public class CostRecordController extends BaseController {
             return resultMap.fail();
         }
     }
-    @PostMapping("/insert")
+
+    @PostMapping("/getPageListByDate")
+    @ApiOperation(value = "获取消费记录列表（分页）,一天一条记录")
+    public ResultMap getPageListByDate(@RequestBody PageParam<CostRecordSearch> param){
+        try{
+            List<CostRecordHasDic> list = service.getPageListByDate(param);
+            if(list.size()>0){
+                return this.resultMap.success().data(new PageInfo<>(list));
+            } else {
+                return this.resultMap.success().data(new PageInfo<>(list)).message("没有记录");
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+            logger.error("分页查询出错："+e.getMessage());
+            return resultMap.fail();
+        }
+    }
+
+    @PostMapping("/getMonthRecordForTable")
+    @ApiOperation(value = "获取消费记录列表（分页）,一天一条记录")
+    public ResultMap getMonthRecordForTable(@RequestBody CostRecordSearch param){
+        try{
+            List<CostRecordHasDic> list = service.getMonthRecordForTable(param);
+            if(list.size()>0){
+                return this.resultMap.success().data(list);
+            } else {
+                return this.resultMap.success().data(list).message("没有记录");
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+            logger.error("分页查询出错："+e.getMessage());
+            return resultMap.fail();
+        }
+    }
+
+    @PostMapping("/save")
     @ApiOperation(value = "保存消费项目")
     public ResultMap save(@RequestBody CostRecord param){
         try{
-            this.service.insert(param);
+            this.service.save(param);
             return resultMap.success();
         } catch (Exception e){
             e.printStackTrace();
@@ -75,6 +111,7 @@ public class CostRecordController extends BaseController {
             return resultMap.fail().message(msg);
         }
     }
+
     @PostMapping("/insertList")
     @ApiOperation(value = "保存消费项目")
     public ResultMap save(@RequestBody List<CostRecord> param){
@@ -101,5 +138,4 @@ public class CostRecordController extends BaseController {
             return resultMap.fail().message(msg);
         }
     }
-
 }

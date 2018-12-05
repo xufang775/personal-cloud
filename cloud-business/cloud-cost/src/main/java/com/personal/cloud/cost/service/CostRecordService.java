@@ -14,7 +14,13 @@ public interface CostRecordService {
 
     List<CostRecordHasDic> getPageListNew(PageParam<CostRecordSearch> search);
 
+    List<CostRecordHasDic> getPageListByDate(PageParam<CostRecordSearch> pageParam);
+
+    List<CostRecordHasDic> getMonthRecordForTable(CostRecordSearch pageParam);
+
     List<CostRecord> getPageList(CostRecordSearch search);
+
+    int save(CostRecord record);
 
     boolean insert(CostRecord record);
 
