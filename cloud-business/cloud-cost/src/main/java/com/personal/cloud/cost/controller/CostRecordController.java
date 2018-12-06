@@ -3,10 +3,12 @@ package com.personal.cloud.cost.controller;
 import com.github.pagehelper.PageInfo;
 import com.personal.cloud.base.entity.CostItem;
 import com.personal.cloud.base.entity.CostRecord;
+import com.personal.cloud.base.util.KeyValue;
 import com.personal.cloud.base.util.MyRequestParam;
 import com.personal.cloud.base.util.PageParam;
 import com.personal.cloud.cost.model.CostRecordHasDic;
 import com.personal.cloud.cost.model.CostRecordSearch;
+import com.personal.cloud.cost.service.CostItemService;
 import com.personal.cloud.cost.service.CostRecordService;
 import com.personal.cloud.cost.util.ResultMap;
 import io.swagger.annotations.Api;
@@ -15,6 +17,7 @@ import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -27,6 +30,8 @@ public class CostRecordController extends BaseController {
 
     @Autowired
     public CostRecordService service;
+    @Autowired
+    private CostItemService costItemService;
 
     @PostMapping("/pageList")
     @ApiOperation(value = "获取消费项目列表-分页")
@@ -85,9 +90,34 @@ public class CostRecordController extends BaseController {
     @ApiOperation(value = "获取消费记录列表（分页）,一天一条记录")
     public ResultMap getMonthRecordForTable(@RequestBody CostRecordSearch param){
         try{
+//            List<KeyValue> cols = this.costItemService.getKVList();
             List<CostRecordHasDic> list = service.getMonthRecordForTable(param);
+//            HashMap<String, Object> res = new HashMap<>();
+//            res.put("cols",cols);
+//            res.put("list",list);
             if(list.size()>0){
                 return this.resultMap.success().data(list);
+            } else {
+                return this.resultMap.success().data(list).message("没有记录");
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+            logger.error("分页查询出错："+e.getMessage());
+            return resultMap.fail();
+        }
+    }
+
+    @PostMapping("/getListForMonth")
+    @ApiOperation(value = "获取消费记录列表（分页）,一天一条记录")
+    public ResultMap getListForMonth(@RequestBody CostRecordSearch param){
+        try{
+            List<KeyValue> cols = this.costItemService.getKVList();
+            List<CostRecordHasDic> list = service.getMonthRecordForTable(param);
+            HashMap<String, Object> res = new HashMap<>();
+            res.put("cols",cols);
+            res.put("list",list);
+            if(list.size()>0){
+                return this.resultMap.success().data(res);
             } else {
                 return this.resultMap.success().data(list).message("没有记录");
             }
