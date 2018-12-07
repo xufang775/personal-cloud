@@ -31,5 +31,8 @@ public class CostRecordHasDic {
 
     private String itemCode;
 
+    private String costPriceAll;
+    private String remarkAll;
+
     private List<CostRecordHasDic> details;
 }

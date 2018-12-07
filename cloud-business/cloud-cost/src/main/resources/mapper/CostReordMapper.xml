@@ -82,6 +82,7 @@
   <select id="selectMonthRecordForTable" parameterType="com.personal.cloud.cost.model.CostRecordSearch"
           resultType="com.personal.cloud.cost.model.CostRecordHasDic">
     select costDate,costItemId, b.itemName costItemName,a.remark,b.itemCode,sum(costPrice) costPrice
+    ,group_concat(a.costPrice SEPARATOR '||') costPriceAll,group_concat(a.remark SEPARATOR '||') remarkAll
     from my_cost.cost_record a
     left join my_cost.cost_item b on a.costItemId = b.id
     where a.deleteflag=0 and DATE_FORMAT(a.costDate,'%Y-%m') = #{costMonthStr}
