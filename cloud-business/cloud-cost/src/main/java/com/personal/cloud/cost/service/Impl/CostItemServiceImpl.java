@@ -2,6 +2,7 @@ package com.personal.cloud.cost.service.Impl;
 
 import com.github.pagehelper.PageHelper;
 import com.personal.cloud.base.entity.CostItem;
+import com.personal.cloud.base.entity.CostItemExample;
 import com.personal.cloud.base.mapper.CostItemMapper;
 import com.personal.cloud.base.util.KeyValue;
 import com.personal.cloud.cost.service.CostItemService;
@@ -26,7 +27,11 @@ public class CostItemServiceImpl implements CostItemService {
     }
 
     public List<CostItem> getList(){
-        return this.costItemMapper.selectAll();
+        CostItemExample example = new CostItemExample();
+        example.setOrderByClause("CONVERT(sortNo,SIGNED)");
+        CostItemExample.Criteria criteria= example.createCriteria();
+        criteria.andEnabledEqualTo(true);
+        return this.costItemMapper.selectByExample(example);
     }
 
     public List<CostItem> getPageList(CostItem costItem){
