@@ -138,6 +138,24 @@ public class CostRecordServiceImpl implements CostRecordService {
         return costRecordEMapper.selectMonthRecordForTable(search);
     }
 
+    public List<CostRecordHasDic> getMonthCensus(CostRecordSearch search){
+//        CostRecordSearch search = pageParam;
+        if(search !=null){
+            if(search.getCostMonthStr() == null){
+                // 消费月份转化成“yyyy-mm”字符串
+                if(search.getCostMonth()!=null){
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
+                    search.setCostMonthStr(sdf.format(search.costMonth));
+                }
+                if(search.getCostYear()!=null){
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+                    search.setCostYearStr(sdf.format(search.costYear));
+                }
+            }
+        }
+        return costRecordEMapper.getMonthCensus(search);
+    }
+
     public int save(CostRecord record){
 
         int res;

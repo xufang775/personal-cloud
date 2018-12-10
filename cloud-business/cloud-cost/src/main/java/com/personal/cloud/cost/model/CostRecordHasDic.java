@@ -33,6 +33,9 @@ public class CostRecordHasDic {
 
     private String costPriceAll;
     private String remarkAll;
+    private String costDateAll;
+
+    private String costMonth;
 
     private List<CostRecordHasDic> details;
 }

@@ -18,6 +18,8 @@ public interface CostRecordService {
 
     List<CostRecordHasDic> getMonthRecordForTable(CostRecordSearch pageParam);
 
+    List<CostRecordHasDic> getMonthCensus(CostRecordSearch search);
+
     List<CostRecord> getPageList(CostRecordSearch search);
 
     int save(CostRecord record);

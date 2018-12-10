@@ -33,4 +33,6 @@ public class CostRecordSearch {
     public String remark;
     public String costMonthStr;
     public String costYearStr;
+
+    public String searchType;
 }

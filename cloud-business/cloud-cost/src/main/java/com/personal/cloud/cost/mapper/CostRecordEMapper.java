@@ -20,5 +20,7 @@ public interface CostRecordEMapper {
 
     List<CostRecordHasDic> selectMonthRecordForTable(CostRecordSearch search);
 
+    List<CostRecordHasDic> getMonthCensus(CostRecordSearch search);
+
     int insertBatch(@Param("list")List<CostRecord> list);
 }

@@ -81,13 +81,33 @@
 
   <select id="selectMonthRecordForTable" parameterType="com.personal.cloud.cost.model.CostRecordSearch"
           resultType="com.personal.cloud.cost.model.CostRecordHasDic">
-    select costDate,costItemId, b.itemName costItemName,a.remark,b.itemCode,sum(costPrice) costPrice
-    ,group_concat(a.costPrice SEPARATOR '||') costPriceAll,group_concat(a.remark SEPARATOR '||') remarkAll
-    from my_cost.cost_record a
-    left join my_cost.cost_item b on a.costItemId = b.id
-    where a.deleteflag=0 and DATE_FORMAT(a.costDate,'%Y-%m') = #{costMonthStr}
-    group by costDate,costItemId
-    order by costDate desc
+    <if test="searchType=='month'">
+      select costDate,costItemId, b.itemName costItemName,a.remark,b.itemCode,sum(costPrice) costPrice
+      ,group_concat(a.costPrice SEPARATOR '||') costPriceAll,group_concat(a.remark SEPARATOR '||') remarkAll
+      from my_cost.cost_record a
+      left join my_cost.cost_item b on a.costItemId = b.id
+      where a.deleteflag=0 and DATE_FORMAT(a.costDate,'%Y-%m') = #{costMonthStr}
+      group by costDate,costItemId
+      order by costDate desc
+    </if>
+    <if test="searchType=='year'">
+      select DATE_FORMAT(a.costDate,'%Y-%m') costMonth,costItemId, b.itemName costItemName,a.remark,b.itemCode,sum(costPrice) costPrice
+      ,group_concat(DATE_FORMAT(a.costDate,'%Y-%m-%d') order by a.costDate SEPARATOR '||') costDateAll
+      ,group_concat(a.costPrice order by a.costDate SEPARATOR '||') costPriceAll
+      ,group_concat(a.remark order by a.costDate SEPARATOR '||') remarkAll
+      from my_cost.cost_record a
+      left join my_cost.cost_item b on a.costItemId = b.id
+      where a.deleteflag=0 and DATE_FORMAT(a.costDate,'%Y') =#{costYearStr}
+      group by DATE_FORMAT(a.costDate,'%Y-%m'),costItemId
+      order by costDate desc
+    </if>
+  </select>
+  <select id="getMonthCensus" parameterType="com.personal.cloud.cost.model.CostRecordSearch"
+          resultType="com.personal.cloud.cost.model.CostRecordHasDic">
+    select date_format(costDate, '%Y-%m') costMonth,sum(costPrice) costPrice from my_cost.cost_record
+    where deleteFlag=0
+    group by date_format(costDate, '%Y-%m')
+    order by  date_format(costDate, '%Y-%m')
   </select>
 
   <!-- 批量插入数据 -->

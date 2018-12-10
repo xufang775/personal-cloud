@@ -128,6 +128,23 @@ public class CostRecordController extends BaseController {
         }
     }
 
+    @PostMapping("/getMonthCensus")
+    @ApiOperation(value = "获取消费记录列表（分页）,一天一条记录")
+    public ResultMap getMonthCensus(@RequestBody CostRecordSearch param){
+        try{
+            List<CostRecordHasDic> list = service.getMonthCensus(param);
+            if(list.size()>0){
+                return this.resultMap.success().data(list);
+            } else {
+                return this.resultMap.success().data(list).message("没有记录");
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+            logger.error("分页查询出错："+e.getMessage());
+            return resultMap.fail();
+        }
+    }
+
     @PostMapping("/save")
     @ApiOperation(value = "保存消费项目")
     public ResultMap save(@RequestBody CostRecord param){
