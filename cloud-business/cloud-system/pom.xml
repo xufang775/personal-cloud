@@ -49,11 +49,7 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
+
 		<!--mapper-->
 		<dependency>
 			<groupId>tk.mybatis</groupId>
@@ -102,6 +98,12 @@
 			<groupId>com.personal.cloud.base</groupId>
 			<artifactId>cloud-base</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
+			<!--<scope>runtime</scope>-->
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 

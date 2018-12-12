@@ -25,4 +25,6 @@ public interface SysUserService {
     String getRolePermission(String username);
 
     String getPermission(String username);
+
+    SysUser getUserOne(String userName);
 }

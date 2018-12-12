@@ -10,11 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.personal.cloud</groupId>
-    <artifactId>cloud-business</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>business-entity</module>
-    </modules>
+    <artifactId>personal-common</artifactId>
 
 
 </project>

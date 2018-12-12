@@ -1,6 +1,9 @@
 package com.personal.cloud.cost.shiro;
 
+import com.personal.cloud.base.entity.SysUser;
+import com.personal.cloud.cost.model.UserInfo;
 import com.personal.cloud.cost.service.SysUserService;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -8,6 +11,7 @@ import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -66,6 +70,7 @@ public class CustomRealm extends AuthorizingRealm {
         System.out.println("————权限认证————");
         String username = JWTUtil.getUsername(principals.toString());
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+        SysUser user = sysUserService.getUserOne(username);
         // 获得该用户角色
         String role = sysUserService.getRole(username);
         // 每个角色拥有默认的权限
@@ -81,6 +86,11 @@ public class CustomRealm extends AuthorizingRealm {
         // 设置该用户拥有的角色和权限
         info.setRoles(roleSet);
         info.setStringPermissions(permissionSet);
+        // 当验证都通过后，把用户信息放在session里
+        Session session = SecurityUtils.getSubject().getSession();
+        session.setAttribute("username",username);
+        session.setAttribute("userId",user.getId());
+
         return info;
     }
 }

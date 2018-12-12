@@ -44,6 +44,12 @@ public class SysUserServiceImpl implements SysUserService {
         return userInfo;
     }
 
+    public SysUser getUserOne(String userName){
+        SysUser params = new SysUser();
+        params.setUserName(userName);
+        return this.sysUserMapper.selectOne(params);
+    }
+
     private SysUser GetOneUser(String username){
         SysUser userParam = new SysUser();  //  SysUser.builder().userName(username).build();
         userParam.setUserName(username);
