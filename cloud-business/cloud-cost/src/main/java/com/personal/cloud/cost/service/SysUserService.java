@@ -1,7 +1,7 @@
 package com.personal.cloud.cost.service;
 
-import com.personal.cloud.base.entity.SysRole;
-import com.personal.cloud.base.entity.SysUser;
+import com.personal.common.entity.SysRole;
+import com.personal.common.entity.SysUser;
 import com.personal.cloud.cost.model.UserInfo;
 
 import java.util.List;

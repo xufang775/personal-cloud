@@ -1,6 +1,6 @@
 package com.personal.cloud.cost.mapper;
 
-import com.personal.cloud.base.entity.CostRecord;
+import com.personal.common.entity.CostRecord;
 import com.personal.cloud.cost.model.CostRecordHasDic;
 import com.personal.cloud.cost.model.CostRecordSearch;
 import org.apache.ibatis.annotations.Param;

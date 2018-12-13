@@ -1,8 +1,8 @@
 package com.personal.cloud.cost.service.Impl;
 
-import com.personal.cloud.base.entity.SysRole;
-import com.personal.cloud.base.entity.SysUser;
-import com.personal.cloud.base.mapper.SysRoleMapper;
+import com.personal.common.entity.SysRole;
+import com.personal.common.entity.SysUser;
+import com.personal.common.mapper.SysRoleMapper;
 import com.personal.cloud.cost.mapper.UserMapper;
 import com.personal.cloud.cost.model.UserInfo;
 import com.personal.cloud.cost.service.SysUserService;

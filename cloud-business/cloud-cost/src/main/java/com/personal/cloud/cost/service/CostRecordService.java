@@ -1,7 +1,7 @@
 package com.personal.cloud.cost.service;
 
-import com.personal.cloud.base.entity.CostRecord;
-import com.personal.cloud.base.util.PageParam;
+import com.personal.common.entity.CostRecord;
+import com.personal.common.util.PageParam;
 import com.personal.cloud.cost.model.CostRecordHasDic;
 import com.personal.cloud.cost.model.CostRecordSearch;
 

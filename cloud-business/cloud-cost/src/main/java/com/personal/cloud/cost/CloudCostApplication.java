@@ -15,7 +15,7 @@ import java.io.IOException;
 @RestController
 @EnableSwagger2Doc
 @SpringBootApplication
-@MapperScan(basePackages = "com.personal.cloud.*.mapper")
+@MapperScan(basePackages ={"com.personal.common.mapper","com.personal.cloud.cost.mapper"})
 public class CloudCostApplication {
 
 	public static void main(String[] args) {

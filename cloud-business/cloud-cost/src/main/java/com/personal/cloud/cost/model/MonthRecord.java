@@ -1,6 +1,6 @@
 package com.personal.cloud.cost.model;
 
-import com.personal.cloud.base.util.KeyValue;
+import com.personal.common.util.KeyValue;
 import io.swagger.annotations.ApiModel;
 import lombok.Getter;
 import lombok.Setter;

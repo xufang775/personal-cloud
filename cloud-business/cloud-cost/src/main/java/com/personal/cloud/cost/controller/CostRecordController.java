@@ -1,11 +1,11 @@
 package com.personal.cloud.cost.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.personal.cloud.base.entity.CostItem;
-import com.personal.cloud.base.entity.CostRecord;
-import com.personal.cloud.base.util.KeyValue;
-import com.personal.cloud.base.util.MyRequestParam;
-import com.personal.cloud.base.util.PageParam;
+import com.personal.common.entity.CostItem;
+import com.personal.common.entity.CostRecord;
+import com.personal.common.util.KeyValue;
+import com.personal.common.util.MyRequestParam;
+import com.personal.common.util.PageParam;
 import com.personal.cloud.cost.model.CostRecordHasDic;
 import com.personal.cloud.cost.model.CostRecordSearch;
 import com.personal.cloud.cost.service.CostItemService;
@@ -119,7 +119,7 @@ public class CostRecordController extends BaseController {
             if(list.size()>0){
                 return this.resultMap.success().data(res);
             } else {
-                return this.resultMap.success().data(list).message("没有记录");
+                return this.resultMap.success().data(res).message("没有记录");
             }
         } catch (Exception e){
             e.printStackTrace();

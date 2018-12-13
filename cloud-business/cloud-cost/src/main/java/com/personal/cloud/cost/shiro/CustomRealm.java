@@ -1,6 +1,6 @@
 package com.personal.cloud.cost.shiro;
 
-import com.personal.cloud.base.entity.SysUser;
+import com.personal.common.entity.SysUser;
 import com.personal.cloud.cost.model.UserInfo;
 import com.personal.cloud.cost.service.SysUserService;
 import org.apache.shiro.SecurityUtils;

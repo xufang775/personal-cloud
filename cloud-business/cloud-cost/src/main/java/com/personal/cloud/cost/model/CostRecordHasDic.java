@@ -1,6 +1,5 @@
 package com.personal.cloud.cost.model;
 
-import com.personal.cloud.base.entity.CostRecord;
 import lombok.Getter;
 import lombok.Setter;
 

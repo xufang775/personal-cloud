@@ -1,6 +1,6 @@
 package com.personal.cloud.cost.controller;
 
-import com.personal.cloud.base.util.MyRequestParam;
+import com.personal.common.util.MyRequestParam;
 import com.personal.cloud.cost.model.LoginParam;
 import com.personal.cloud.cost.model.UserInfo;
 import com.personal.cloud.cost.service.SysUserService;

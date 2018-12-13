@@ -1,6 +1,6 @@
 package com.personal.cloud.cost.util;
 
-import com.personal.cloud.base.constant.HttpCode;
+import com.personal.common.constant.HttpCode;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;

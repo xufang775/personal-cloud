@@ -1,7 +1,7 @@
 package com.personal.cloud.cost.mapper;
 
-import com.personal.cloud.base.entity.SysUser;
-import com.personal.cloud.base.util.BaseMapper;
+import com.personal.common.entity.SysUser;
+import com.personal.common.util.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

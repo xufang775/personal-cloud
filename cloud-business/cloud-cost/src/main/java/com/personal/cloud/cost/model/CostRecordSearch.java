@@ -1,6 +1,5 @@
 package com.personal.cloud.cost.model;
 
-import com.personal.cloud.base.util.BaseSearch;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
