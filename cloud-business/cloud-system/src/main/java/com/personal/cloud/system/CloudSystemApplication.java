@@ -17,7 +17,7 @@ import java.io.IOException;
 @EnableSwagger2Doc
 @SpringBootApplication
 //@ComponentScan(basePackages = {"com.personal.cloud.base.util","com.personal.cloud.system.service.impl"})
-@MapperScan(basePackages = "com.personal.cloud.*.mapper")
+@MapperScan(basePackages ={"com.personal.common.mapper", "com.personal.cloud.*.mapper"})
 public class CloudSystemApplication {
 
 	public static void main(String[] args) {

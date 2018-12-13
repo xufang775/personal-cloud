@@ -13,7 +13,7 @@
     <artifactId>cloud-business</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>business-entity</module>
+
     </modules>
 
 

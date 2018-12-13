@@ -1,9 +1,9 @@
 package com.personal.cloud.system.service.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.personal.cloud.base.entity.SysUser;
-import com.personal.cloud.base.mapper.SysUserMapper;
-import com.personal.cloud.base.util.PageParam;
+import com.personal.common.entity.SysUser;
+import com.personal.common.mapper.SysUserMapper;
+import com.personal.common.util.PageParam;
 import com.personal.cloud.system.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by xufan on 2018/12/12.
  */
-@Service(value = "SysUserServiceImpl")
+@Service(value = "SysUserService")
 public class SysUserServiceImpl implements SysUserService {
     @Autowired
     public SysUserMapper sysUserMapper;

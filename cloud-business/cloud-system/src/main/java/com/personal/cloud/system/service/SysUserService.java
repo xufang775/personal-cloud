@@ -1,8 +1,7 @@
 package com.personal.cloud.system.service;
 
-import com.personal.cloud.base.entity.SysUser;
-import com.personal.cloud.base.util.PageParam;
-import org.springframework.stereotype.Service;
+import com.personal.common.entity.SysUser;
+import com.personal.common.util.PageParam;
 
 import java.util.List;
 

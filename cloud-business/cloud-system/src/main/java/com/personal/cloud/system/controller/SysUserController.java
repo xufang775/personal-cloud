@@ -1,9 +1,9 @@
 package com.personal.cloud.system.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.personal.cloud.base.controller.BaseController;
-import com.personal.cloud.base.entity.SysUser;
-import com.personal.cloud.base.util.PageParam;
+//import com.personal.cloud.base.controller.BaseController;
+import com.personal.common.entity.SysUser;
+import com.personal.common.util.PageParam;
 import com.personal.cloud.system.util.ResultMap;
 import com.personal.cloud.system.service.SysUserService;
 import io.swagger.annotations.Api;
@@ -26,8 +26,7 @@ public class SysUserController {
     public SysUserService sysUserService;
     @Autowired
     protected ResultMap resultMap;
-    protected static Logger logger = LoggerFactory.getLogger(BaseController.class);
-
+    protected static Logger logger = LoggerFactory.getLogger(SysUserController.class);
     @PostMapping("/pageListHasDic")
     @ApiOperation(value = "获取用户列表-分页")
     public ResultMap getPageListHasDic(@RequestBody PageParam<SysUser> param){

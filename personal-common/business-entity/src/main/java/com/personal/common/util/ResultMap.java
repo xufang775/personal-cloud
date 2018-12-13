@@ -1,4 +1,4 @@
-package com.personal.cloud.system.util;
+package com.personal.common.util;
 
 import com.personal.common.constant.HttpCode;
 import org.springframework.stereotype.Service;
