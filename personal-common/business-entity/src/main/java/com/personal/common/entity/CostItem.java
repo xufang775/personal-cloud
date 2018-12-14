@@ -16,13 +16,15 @@ public class CostItem extends BaseEntity {
 
     private String itemName;
 
+    private Integer type;
+
     private String remark;
 
     private Boolean enabled;
 
     private String sortNo;
 
-    private Date addTime;
+    private Date addDate;
 
     private String addUserId;
 

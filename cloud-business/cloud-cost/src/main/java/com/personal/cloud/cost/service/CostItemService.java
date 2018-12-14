@@ -2,6 +2,7 @@ package com.personal.cloud.cost.service;
 
 import com.personal.common.entity.CostItem;
 import com.personal.common.util.KeyValue;
+import com.personal.common.util.PageParam;
 
 import java.util.List;
 
@@ -10,7 +11,11 @@ import java.util.List;
  */
 public interface CostItemService {
 
-    List<CostItem> getPageList(CostItem costItem);
+    List<CostItem> getPageList(PageParam<CostItem> search );
+
+    int save(CostItem record);
+
+    int delete(List<String> ids);
 
     List<CostItem> getList();
 

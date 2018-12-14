@@ -445,6 +445,67 @@ public class CostItemExample {
             return (Criteria) this;
         }
 
+        
+        public Criteria andTypeIsNull() {
+            addCriterion("type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIsNotNull() {
+            addCriterion("type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeEqualTo(Boolean value) {
+            addCriterion("type =", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotEqualTo(Boolean value) {
+            addCriterion("type <>", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeGreaterThan(Boolean value) {
+            addCriterion("type >", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("type >=", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeLessThan(Boolean value) {
+            addCriterion("type <", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeLessThanOrEqualTo(Boolean value) {
+            addCriterion("type <=", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIn(List<Boolean> values) {
+            addCriterion("type in", values, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotIn(List<Boolean> values) {
+            addCriterion("type not in", values, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeBetween(Boolean value1, Boolean value2) {
+            addCriterion("type between", value1, value2, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("type not between", value1, value2, "type");
+            return (Criteria) this;
+        }
+        
         public Criteria andSortNoIsNull() {
             addCriterion("sortNo is null");
             return (Criteria) this;
@@ -515,63 +576,63 @@ public class CostItemExample {
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeIsNull() {
-            addCriterion("addTime is null");
+        public Criteria andAddDateIsNull() {
+            addCriterion("addDate is null");
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeIsNotNull() {
-            addCriterion("addTime is not null");
+        public Criteria andAddDateIsNotNull() {
+            addCriterion("addDate is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeEqualTo(Date value) {
-            addCriterion("addTime =", value, "addTime");
+        public Criteria andAddDateEqualTo(Date value) {
+            addCriterion("addDate =", value, "addDate");
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeNotEqualTo(Date value) {
-            addCriterion("addTime <>", value, "addTime");
+        public Criteria andAddDateNotEqualTo(Date value) {
+            addCriterion("addDate <>", value, "addDate");
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeGreaterThan(Date value) {
-            addCriterion("addTime >", value, "addTime");
+        public Criteria andAddDateGreaterThan(Date value) {
+            addCriterion("addDate >", value, "addDate");
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("addTime >=", value, "addTime");
+        public Criteria andAddDateGreaterThanOrEqualTo(Date value) {
+            addCriterion("addDate >=", value, "addDate");
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeLessThan(Date value) {
-            addCriterion("addTime <", value, "addTime");
+        public Criteria andAddDateLessThan(Date value) {
+            addCriterion("addDate <", value, "addDate");
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeLessThanOrEqualTo(Date value) {
-            addCriterion("addTime <=", value, "addTime");
+        public Criteria andAddDateLessThanOrEqualTo(Date value) {
+            addCriterion("addDate <=", value, "addDate");
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeIn(List<Date> values) {
-            addCriterion("addTime in", values, "addTime");
+        public Criteria andAddDateIn(List<Date> values) {
+            addCriterion("addDate in", values, "addDate");
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeNotIn(List<Date> values) {
-            addCriterion("addTime not in", values, "addTime");
+        public Criteria andAddDateNotIn(List<Date> values) {
+            addCriterion("addDate not in", values, "addDate");
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeBetween(Date value1, Date value2) {
-            addCriterion("addTime between", value1, value2, "addTime");
+        public Criteria andAddDateBetween(Date value1, Date value2) {
+            addCriterion("addDate between", value1, value2, "addDate");
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeNotBetween(Date value1, Date value2) {
-            addCriterion("addTime not between", value1, value2, "addTime");
+        public Criteria andAddDateNotBetween(Date value1, Date value2) {
+            addCriterion("addDate not between", value1, value2, "addDate");
             return (Criteria) this;
         }
 

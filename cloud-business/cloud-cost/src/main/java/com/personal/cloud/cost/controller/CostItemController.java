@@ -6,6 +6,7 @@ import com.personal.common.util.KeyValue;
 import com.personal.common.util.MyRequestParam;
 import com.personal.cloud.cost.service.CostItemService;
 import com.personal.cloud.cost.util.ResultMap;
+import com.personal.common.util.PageParam;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,48 @@ public class CostItemController extends BaseController {
         this.service = costItemService;
     }
 
+    @PostMapping("/getPageList")
+    @ApiOperation(value = "获取消费项目")
+    public ResultMap getPageList(@RequestBody PageParam<CostItem> param){
+        try{
+            List<CostItem> list = service.getPageList(param);
+            return this.resultMap.success().data(new PageInfo<>(list));
+        } catch (Exception e){
+            e.printStackTrace();
+            String msg = "分页查询出错："+e.getMessage();
+            this.logger.error(msg);
+            return resultMap.fail().message(msg);
+        }
+    }
+
+    @PostMapping("/save")
+    @ApiOperation(value = "保存消费项目")
+    public ResultMap save(@RequestBody CostItem param){
+        try {
+            this.service.save(param);
+            return resultMap.success();
+        } catch (Exception e){
+            e.printStackTrace();
+            String msg = "分页查询出错："+e.getMessage();
+            this.logger.error(msg);
+            return resultMap.fail().message(msg);
+        }
+    }
+
+    @PostMapping("/delete")
+    @ApiOperation(value = "删除消费项目")
+    public ResultMap delete(@RequestBody List<String> ids){
+        try{
+            this.service.delete(ids);
+            return resultMap.success();
+        } catch (Exception e){
+            e.printStackTrace();
+            String msg = "分页查询出错："+e.getMessage();
+            this.logger.error(msg);
+            return resultMap.fail().message(msg);
+        }
+    }
+
     @GetMapping("/list")
     @ApiOperation(value = "获取消费项目")
     public ResultMap getList(){
@@ -38,16 +81,6 @@ public class CostItemController extends BaseController {
         }
     }
 
-    @PostMapping("/pageList")
-    @ApiOperation(value = "获取消费项目")
-    public ResultMap getPageList(@RequestBody MyRequestParam<CostItem> param){
-        List<CostItem> list = service.getPageList(param.data);
-        if(list.size()>0){
-            return this.resultMap.success().data(new PageInfo<>(list));
-        } else {
-            return this.resultMap.fail();
-        }
-    }
     @PostMapping("/create")
     @ApiOperation(value = "创建消费项目")
     public ResultMap createOne(@RequestBody CostItem costItem){

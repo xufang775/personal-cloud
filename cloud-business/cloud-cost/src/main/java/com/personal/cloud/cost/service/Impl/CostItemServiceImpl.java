@@ -6,6 +6,7 @@ import com.personal.common.entity.CostItemExample;
 import com.personal.common.mapper.CostItemMapper;
 import com.personal.common.util.KeyValue;
 import com.personal.cloud.cost.service.CostItemService;
+import com.personal.common.util.PageParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,11 +35,40 @@ public class CostItemServiceImpl implements CostItemService {
         return this.costItemMapper.selectByExample(example);
     }
 
-    public List<CostItem> getPageList(CostItem costItem){
-        if(costItem.getPage() != null && costItem.getRows() != null){
-            PageHelper.startPage(costItem.getPage(),costItem.getRows());
+    public List<CostItem> getPageList(PageParam<CostItem> pageParam ){
+        if(pageParam.getPage() != null && pageParam.getRows() != null){
+            PageHelper.startPage(pageParam.getPage(),pageParam.getRows());
+        }
+        CostItem search = pageParam.getParams();
+        if(search != null){
+            CostItemExample example = new CostItemExample();
+            CostItemExample.Criteria criteria = example.createCriteria();
+            if(search.getItemName()!=null){
+                criteria.andItemNameLike("%"+search.getItemName()+"%");
+            }
+            return costItemMapper.selectByExample(example);
         }
         return costItemMapper.selectAll();
+    }
+
+    public int save(CostItem record){
+        int res;
+        if(record.getId() == null){  // 新增
+            record.setId(UUID.randomUUID().toString());
+            record.setAddDate(new Date());
+//            Long currentUserId = (Long) SecurityUtils.getSubject().getSession().getAttribute("currentUserId");
+//            String username = (String) SecurityUtils.getSubject().getSession().getAttribute("username");
+            res = this.costItemMapper.insert(record);
+        } else {    // 修改
+            res = this.costItemMapper.updateByPrimaryKey(record);
+        }
+        return res;
+    }
+    public int delete(List<String> ids){
+        CostItemExample example = new CostItemExample();
+        CostItemExample.Criteria criteria = example.createCriteria();
+        criteria.andIdIn(ids);
+        return this.costItemMapper.deleteByExample(example);
     }
 
     public List<KeyValue> getKVList(){
@@ -53,7 +83,7 @@ public class CostItemServiceImpl implements CostItemService {
     public boolean create(CostItem costItem){
         costItem.setId(UUID.randomUUID().toString());
         costItem.setSortNo("999");
-        costItem.setAddTime(new Date());
+        costItem.setAddDate(new Date());
         int res = this.costItemMapper.insert(costItem);
         if(res == 1){
             return true;
