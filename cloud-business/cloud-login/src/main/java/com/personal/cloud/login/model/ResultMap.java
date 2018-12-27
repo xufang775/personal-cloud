@@ -1,4 +1,4 @@
-package com.personal.common.util;
+package com.personal.cloud.login.model;
 
 import com.personal.common.constant.HttpCode;
 import org.springframework.stereotype.Component;
@@ -9,7 +9,7 @@ import java.util.HashMap;
 /**
  * Created by xufan on 2018/11/12.
  */
-//@Component
+@Component
 @Service("ResultMap")
 public class ResultMap extends HashMap<String, Object> {
 

@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by xufan on 2018/12/4.
  */
 @RestController
-public class TestController {
+public class Test1Controller {
 
-    @Value("${name}")
-    private String msg;
-    @GetMapping("test")
-    public String test(){
-        return this.msg;
-    }
+//    @Value("${name}")
+//    private String msg;
+//    @GetMapping("test")
+//    public String test(){
+//        return this.msg;
+//    }
 
     @GetMapping("test2")
     public String test2(){
