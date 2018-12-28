@@ -2,10 +2,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!--<parent>-->
+        <!--<artifactId>personal-cloud</artifactId>-->
+        <!--<groupId>com.personal.cloud</groupId>-->
+        <!--<version>1.0-SNAPSHOT</version>-->
+    <!--</parent>-->
     <parent>
-        <artifactId>personal-cloud</artifactId>
-        <groupId>com.personal.cloud</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.0.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -15,6 +21,7 @@
     <version>1.0</version>
     <modules>
         <module>business-entity</module>
+        <module>utils</module>
     </modules>
     <name>personal-common</name>
 
@@ -24,8 +31,13 @@
         <java.version>1.8</java.version>
         <javax.version>7.0</javax.version>
         <pagehelper.version>5.1.2</pagehelper.version>
+        <commons-beanutils.version>1.9.2</commons-beanutils.version>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.personal.cloud.money.mapper.CostRecordEMapper">
+  <resultMap id="BaseResultMap" type="com.personal.cloud.money.model.CostRecordHasDic">
+    <constructor>
+      <arg column="id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="costUserId" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="costItemId" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="costItemName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="costDate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="costPrice" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="addDate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="deleteFlag" javaType="java.lang.Boolean" jdbcType="BIT" />
+    </constructor>
+  </resultMap>
+
+  <select id="selectAllHasDic"
+          parameterType="com.personal.cloud.money.model.CostRecordSearch"
+          resultType="com.personal.cloud.money.model.CostRecordHasDic">
+    SELECT a.*
+    ,(select itemName from cost_item b where b.id=a.costItemId) as costItemName
+    FROM cost_record a
+    WHERE a.deleteFlag = 0
+    <if test="costDateStart != null ">
+      and a.costDate >= #{costDateStart}
+    </if>
+    <if test="costDateEnd != null ">
+      and a.costDate &lt;= #{costDateEnd}
+    </if>
+    <if test="costMonthStr != null ">
+      and DATE_FORMAT(a.costDate,'%Y-%m') = #{costMonthStr}
+    </if>
+    <if test="costYearStr != null ">
+      and DATE_FORMAT(a.costDate,'%Y') = #{costYearStr}
+    </if>
+    <if test="costPriceStart != null ">
+      and a.costPrice >= #{costPriceStart}
+    </if>
+    <if test="costPriceEnd != null ">
+      and a.costPrice &lt;= #{costPriceEnd}
+    </if>
+    <if test="costItemId != null ">
+      and a.costItemId = #{costItemId}
+    </if>
+    <if test="remark != null ">
+      and a.remark like concat('%',#{remark},'%')
+    </if>
+    order by a.costDate desc
+  </select>
+
+  <select id="selectAllByDate"
+          parameterType="com.personal.cloud.money.model.CostRecordSearch"
+          resultType="com.personal.cloud.money.model.CostRecordHasDic">
+    select costDate,sum(costPrice) costPrice from my_cost.cost_record a
+    where deleteflag=0
+    <if test="costDateStart != null ">
+      and a.costDate >= #{costDateStart}
+    </if>
+    <if test="costDateEnd != null ">
+      and a.costDate &lt;= #{costDateEnd}
+    </if>
+    <if test="costMonthStr != null ">
+      and DATE_FORMAT(a.costDate,'%Y-%m') = #{costMonthStr}
+    </if>
+    <if test="costYearStr != null ">
+      and DATE_FORMAT(a.costDate,'%Y') = #{costYearStr}
+    </if>
+    group by costDate
+    having 1=1
+    <if test="costPriceStart != null ">
+      and sum(costPrice) >= #{costPriceStart}
+    </if>
+    <if test="costPriceEnd != null ">
+      and sum(costPrice) &lt;= #{costPriceEnd}
+    </if>
+    <if test="costItemId != null ">
+      and group_concat(distinct costItemId) like concat('%'+#{costItemId}+''%')
+    </if>
+    order by costDate desc
+  </select>
+
+  <select id="selectMonthRecordForTable" parameterType="com.personal.cloud.money.model.CostRecordSearch"
+          resultType="com.personal.cloud.money.model.CostRecordHasDic">
+    <if test="searchType=='month'">
+      select costDate,costItemId, b.itemName costItemName,a.remark,b.itemCode,sum(costPrice) costPrice
+      ,group_concat(a.costPrice SEPARATOR '||') costPriceAll,group_concat(a.remark SEPARATOR '||') remarkAll
+      from my_cost.cost_record a
+      left join my_cost.cost_item b on a.costItemId = b.id
+      where a.deleteflag=0 and DATE_FORMAT(a.costDate,'%Y-%m') = #{costMonthStr}
+      group by costDate,costItemId
+      order by costDate desc
+    </if>
+    <if test="searchType=='year'">
+      select DATE_FORMAT(a.costDate,'%Y-%m') costMonth,costItemId, b.itemName costItemName,a.remark,b.itemCode,sum(costPrice) costPrice
+      ,group_concat(DATE_FORMAT(a.costDate,'%Y-%m-%d') order by a.costDate SEPARATOR '||') costDateAll
+      ,group_concat(a.costPrice order by a.costDate SEPARATOR '||') costPriceAll
+      ,group_concat(a.remark order by a.costDate SEPARATOR '||') remarkAll
+      from my_cost.cost_record a
+      left join my_cost.cost_item b on a.costItemId = b.id
+      where a.deleteflag=0 and DATE_FORMAT(a.costDate,'%Y') =#{costYearStr}
+      group by DATE_FORMAT(a.costDate,'%Y-%m'),costItemId
+      order by costDate desc
+    </if>
+  </select>
+  <select id="getMonthCensus" parameterType="com.personal.cloud.money.model.CostRecordSearch"
+          resultType="com.personal.cloud.money.model.CostRecordHasDic">
+    select date_format(costDate, '%Y-%m') costMonth,sum(costPrice) costPrice from my_cost.cost_record
+    where deleteFlag=0
+    group by date_format(costDate, '%Y-%m')
+    order by  date_format(costDate, '%Y-%m')
+  </select>
+
+  <!-- 批量插入数据 -->
+  <insert id="insertBatch" parameterType="java.util.List">
+    <!--<selectKey resultType="long" keyProperty="id" order="AFTER">-->
+      <!--SELECT UUID()-->
+    <!--</selectKey>-->
+    insert into cost_record
+    (id,costItemId,costDate,costPrice,addDate,remark,deleteFlag)
+    values
+    <foreach item="item" collection="list" separator="," index="">
+      (
+      #{item.id},#{item.costItemId},#{item.costDate},#{item.costPrice},#{item.addDate},#{item.remark},0
+      )
+    </foreach>
+  </insert>
+</mapper>
