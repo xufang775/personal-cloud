@@ -1,8 +1,8 @@
 package com.personal.cloud.zuul.service;
 
-import com.personal.common.exception.AppException;
-import com.personal.common.utils.BeanUtility;
-import org.apache.commons.lang.StringUtils;
+//import com.personal.common.exception.AppException;
+//import com.personal.common.utils.BeanUtility;
+//import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.dao.DataAccessException;
 //import org.springframework.data.redis.connection.RedisConnection;

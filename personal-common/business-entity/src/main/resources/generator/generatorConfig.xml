@@ -53,9 +53,13 @@
         <!--<table tableName="cost_item" >-->
             <!--<property name="useActualColumnNames" value="true"/>-->
         <!--</table>-->
-        <table tableName="cost_record">
+        <!--<table tableName="cost_record">-->
+            <!--<property name="useActualColumnNames" value="true"/>-->
+            <!--<property name="modelOnly" value="true"/>-->
+        <!--</table>-->
+        <table tableName="cost_type">
             <property name="useActualColumnNames" value="true"/>
-            <property name="modelOnly" value="true"/>
+            <!--<property name="modelOnly" value="true"/>-->
         </table>
         <!--<table tableName="cost_tag">-->
             <!--<property name="useActualColumnNames" value="true"/>-->
