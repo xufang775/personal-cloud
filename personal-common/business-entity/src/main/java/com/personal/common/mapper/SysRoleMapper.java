@@ -8,17 +8,5 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface SysRoleMapper extends BaseMapper<SysRole> {
-    long countByExample(SysRoleExample example);
 
-    int deleteByExample(SysRoleExample example);
-
-    int insert(SysRole record);
-
-    int insertSelective(SysRole record);
-
-    List<SysRole> selectByExample(SysRoleExample example);
-
-    int updateByExampleSelective(@Param("record") SysRole record, @Param("example") SysRoleExample example);
-
-    int updateByExample(@Param("record") SysRole record, @Param("example") SysRoleExample example);
 }

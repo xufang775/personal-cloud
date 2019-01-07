@@ -18,9 +18,11 @@
           parameterType="String"
           resultType="String">
     select max(code) from cost_type
-    WHERE a.deleteFlag = 0
+    WHERE deleteFlag = 0
     <if test="parentCode != null ">
-      and code like concat(#{parentCode},'%') and code != #{parentCode}
+      and code like concat(#{parentCode},'%')
+      and code != #{parentCode}
+      and length( #{parentCode})+2 = length(code)
     </if>
     <if test="parentCode == null ">
       and length(code)=2
@@ -31,11 +33,12 @@
           parameterType="String"
           resultType="com.personal.common.entity.CostType">
     select * from cost_type
-    WHERE a.deleteFlag = 0
+    WHERE deleteFlag = 0
     <if test="parentCode != null ">
       and code like concat(#{parentCode},'%') and code != #{parentCode}
     </if>
     and addUserName='${userName}'
+    order by sortNo
   </select>
 
 </mapper>

@@ -19,6 +19,7 @@
           resultType="com.personal.cloud.money.model.CostRecordHasDic">
     SELECT a.*
     ,(select itemName from cost_item b where b.id=a.costItemId) as costItemName
+    ,(select name from cost_type c where c.code=a.costTypeCode) as costTypeName
     FROM cost_record a
     WHERE a.deleteFlag = 0
     <if test="costDateStart != null ">

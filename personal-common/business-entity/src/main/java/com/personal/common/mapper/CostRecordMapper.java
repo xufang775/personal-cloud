@@ -8,17 +8,5 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface CostRecordMapper extends BaseMapper<CostRecord> {
-    long countByExample(CostRecordExample example);
 
-    int deleteByExample(CostRecordExample example);
-
-//    int insert(CostRecord record);
-
-    int insertSelective(CostRecord record);
-
-    List<CostRecord> selectByExample(CostRecordExample example);
-
-    int updateByExampleSelective(@Param("record") CostRecord record, @Param("example") CostRecordExample example);
-
-    int updateByExample(@Param("record") CostRecord record, @Param("example") CostRecordExample example);
 }

@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.util.Date;
 @Getter
 @Setter
@@ -32,4 +33,7 @@ public class CostType extends BaseEntity {
     private String addUserName;
 
     private Boolean deleteFlag;
+
+    @Transient
+    private String[] parentCode;
 }

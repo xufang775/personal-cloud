@@ -16,7 +16,11 @@ public class CostRecordHasDic {
 
     private String costItemId;
 
-    public String costItemName;
+    private String costItemName;
+
+    private String costTypeCode;
+
+    private String costTypeName;
 
     private Date costDate;
 

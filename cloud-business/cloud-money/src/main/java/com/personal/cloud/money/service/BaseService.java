@@ -23,12 +23,6 @@ public interface BaseService<T> {
     List<T> getList(T search);
 
     /**
-     * 键值对查询
-     * @return
-     */
-    List<KeyValue> getKVList();
-
-    /**
      * 保存
      * @param record
      * @return
@@ -36,7 +30,7 @@ public interface BaseService<T> {
     int save(T record);
 
     /**
-     * 删除
+     * 批量删除
      * @param ids
      * @return
      */

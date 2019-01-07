@@ -3,6 +3,7 @@ package com.personal.cloud.money.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.personal.cloud.money.mapper.CostTypeEMapper;
 import com.personal.cloud.money.model.Cascader;
+import com.personal.cloud.money.model.CostTypeViewModel;
 import com.personal.cloud.money.service.CostItemService;
 import com.personal.cloud.money.service.CostTypeService;
 import com.personal.common.entity.CostItem;
@@ -19,6 +20,8 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 /**
  * Created by xufan on 2018/11/16.
@@ -74,8 +77,8 @@ public class CostTypeServiceImpl implements CostTypeService{
             if(search.getName()!=null){
                 criteria.andNameLike("%"+search.getName()+"%");
             }
-           example.setOrderByClause("sortNo");
         }
+        example.setOrderByClause("sortNo");
         return mapper.selectByExample(example);
     }
 
@@ -88,12 +91,38 @@ public class CostTypeServiceImpl implements CostTypeService{
     }
 
 
-
+    /**
+     * 保存
+     * @param record
+     * @return
+     */
     public int save(CostType record){
         int res;
         if(record.getId() == null){  // 新增
             record.setId(UUID.randomUUID().toString());
             record.setAddDate(new Date());
+            record.setEnabled(true);
+            record.setDeleteFlag(false);
+            record.setAddUserName("xufang");
+            // 处理code
+            if(record.getParentCode()!=null){
+                String maxCode = this.emapper.getMaxCode(record.getParentCode()[record.getParentCode().length-1]);
+                if(maxCode !=null){
+                    maxCode = (Integer.parseInt(maxCode)+1)+"";
+                } else {
+                    maxCode = record.getParentCode()[record.getParentCode().length-1] + "10";
+                }
+                record.setCode(maxCode);
+                record.setSortNo(maxCode);
+            } else {
+                String maxCode = this.emapper.getMaxCode(null);
+                if(maxCode !=null){
+                    maxCode = (Integer.parseInt(maxCode)+1)+"";
+                }
+                record.setCode(maxCode);
+                record.setSortNo(maxCode);
+            }
+
             res = this.mapper.insert(record);
         } else {    // 修改
             res = this.mapper.updateByPrimaryKey(record);
@@ -118,7 +147,30 @@ public class CostTypeServiceImpl implements CostTypeService{
 
     public List<Cascader> getCascader(){
         List<CostType> list = this.emapper.getCascader(null,"xufang");
-        List<Cascader> res = new ArrayList<>();// list.stream().filter(m->m.getCode().length() == 2).collect();
+        // --处理一级项目
+        List<Cascader> res = list.stream()
+                .filter(m->m.getCode().length()==2)
+                .map(m->new Cascader(m.getCode(),m.getName()))
+                .collect(Collectors.toList());
+
+        res.forEach(m->{
+            if(list.stream().anyMatch(sm->sm.getCode().indexOf(m.getValue())==0 && sm.getCode() != m.getValue())){
+             m.setChildren(this.getCascaderSub(list,m.getValue()));
+            }
+        });
+
+        return res;
+    }
+    private List<Cascader> getCascaderSub(List<CostType> list, String parentCode){
+        List<Cascader> res = list.stream()
+                .filter(m->m.getCode().substring(0,m.getCode().length()-2).equals(parentCode))
+                .map(m->new Cascader(m.getCode(),m.getName()))
+                .collect(Collectors.toList());
+        res.forEach(m->{
+            if(list.stream().anyMatch(sm->sm.getCode().substring(0,sm.getCode().length()-2).equals(m.getValue()))){
+                m.setChildren(this.getCascaderSub(list,m.getValue()));
+            }
+        });
         return res;
     }
 }

@@ -57,7 +57,15 @@
             <!--<property name="useActualColumnNames" value="true"/>-->
             <!--<property name="modelOnly" value="true"/>-->
         <!--</table>-->
-        <table tableName="cost_type">
+        <!--<table tableName="cost_type">-->
+            <!--<property name="useActualColumnNames" value="true"/>-->
+            <!--&lt;!&ndash;<property name="modelOnly" value="true"/>&ndash;&gt;-->
+        <!--</table>-->
+        <table tableName="cost_type_config">
+            <property name="useActualColumnNames" value="true"/>
+            <!--<property name="modelOnly" value="true"/>-->
+        </table>
+        <table tableName="cost_type_config_detail">
             <property name="useActualColumnNames" value="true"/>
             <!--<property name="modelOnly" value="true"/>-->
         </table>
