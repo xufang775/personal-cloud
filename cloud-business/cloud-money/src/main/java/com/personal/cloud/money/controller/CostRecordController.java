@@ -5,8 +5,10 @@ import com.personal.cloud.money.model.CostRecordHasDic;
 import com.personal.cloud.money.model.CostRecordSearch;
 import com.personal.cloud.money.service.CostItemService;
 import com.personal.cloud.money.service.CostRecordService;
+import com.personal.cloud.money.service.CostTypeConfigService;
 import com.personal.cloud.money.util.ResultMap;
 import com.personal.common.entity.CostRecord;
+import com.personal.common.util.Cascader;
 import com.personal.common.util.KeyValue;
 import com.personal.common.util.MyRequestParam;
 import com.personal.common.util.PageParam;
@@ -28,9 +30,11 @@ import java.util.List;
 public class CostRecordController extends BaseController {
 
     @Autowired
-    public CostRecordService service;
+    private CostRecordService service;
     @Autowired
     private CostItemService costItemService;
+    @Autowired
+    private CostTypeConfigService costTypeConfigService;
     @Autowired
     private ResultMap resultMap;
 
@@ -113,6 +117,27 @@ public class CostRecordController extends BaseController {
     public ResultMap getListForMonth(@RequestBody CostRecordSearch param){
         try{
             List<KeyValue> cols = this.costItemService.getKVList();
+            List<CostRecordHasDic> list = service.getMonthRecordForTable(param);
+            HashMap<String, Object> res = new HashMap<>();
+            res.put("cols",cols);
+            res.put("list",list);
+            if(list.size()>0){
+                return this.resultMap.success().data(res);
+            } else {
+                return this.resultMap.success().data(res).message("没有记录");
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+            logger.error("分页查询出错："+e.getMessage());
+            return resultMap.fail();
+        }
+    }
+
+    @PostMapping("/getRecordTableData")
+    @ApiOperation(value = "获取消费记录列表（分页）,一天一条记录")
+    public ResultMap getRecordTableData(@RequestBody CostRecordSearch param){
+        try{
+            List<Cascader> cols = this.costTypeConfigService.getDetailsFieldLabel();
             List<CostRecordHasDic> list = service.getMonthRecordForTable(param);
             HashMap<String, Object> res = new HashMap<>();
             res.put("cols",cols);

@@ -2,7 +2,6 @@ package com.personal.cloud.money.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.personal.cloud.money.mapper.CostTypeEMapper;
-import com.personal.cloud.money.model.Cascader;
 import com.personal.cloud.money.service.CostTypeConfigService;
 import com.personal.cloud.money.service.CostTypeService;
 import com.personal.common.entity.CostType;
@@ -11,7 +10,7 @@ import com.personal.common.entity.CostTypeConfigExample;
 import com.personal.common.entity.CostTypeExample;
 import com.personal.common.mapper.CostTypeConfigMapper;
 import com.personal.common.mapper.CostTypeMapper;
-import com.personal.common.util.KeyValue;
+import com.personal.common.util.Cascader;
 import com.personal.common.util.PageParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -70,35 +69,21 @@ public class CostTypeConfigServiceImpl implements CostTypeConfigService{
      */
     public int save(CostTypeConfig record){
         int res=0;
-//        if(record.getId() == null){  // 新增
-//            record.setId(UUID.randomUUID().toString());
-//            record.setAddDate(new Date());
+        if(record.getId() == null){  // 新增
+            record.setId(UUID.randomUUID().toString());
+            record.setAddDate(new Date());
 //            record.setEnabled(true);
-//            record.setDeleteFlag(false);
-//            record.setAddUserName("xufang");
-//            // 处理code
-//            if(record.getParentCode()!=null){
-//                String maxCode = this.emapper.getMaxCode(record.getParentCode()[record.getParentCode().length-1]);
-//                if(maxCode !=null){
-//                    maxCode = (Integer.parseInt(maxCode)+1)+"";
-//                } else {
-//                    maxCode = record.getParentCode()[record.getParentCode().length-1] + "10";
-//                }
-//                record.setCode(maxCode);
-//                record.setSortNo(maxCode);
-//            } else {
-//                String maxCode = this.emapper.getMaxCode(null);
-//                if(maxCode !=null){
-//                    maxCode = (Integer.parseInt(maxCode)+1)+"";
-//                }
-//                record.setCode(maxCode);
-//                record.setSortNo(maxCode);
-//            }
-//
-//            res = this.mapper.insert(record);
-//        } else {    // 修改
-//            res = this.mapper.updateByPrimaryKey(record);
-//        }
+            record.setDeleteFlag(false);
+            record.setAddUserName("xufang");
+            // 处理details
+            if(record.getDetailsArr()!=null){
+//                record.setDetails(record.getDetailsArr());
+            }
+
+            res = this.mapper.insert(record);
+        } else {    // 修改
+            res = this.mapper.updateByPrimaryKey(record);
+        }
         return res;
     }
     public int delete(List<String> ids){
@@ -135,6 +120,14 @@ public class CostTypeConfigServiceImpl implements CostTypeConfigService{
                 m.setChildren(this.getCascaderSub(list,m.getValue()));
             }
         });
+        return res;
+    }
+
+    public List<Cascader> getDetailsFieldLabel(){
+        String id = "39e903ae-7839-447e-914d-38a5a27453cc";
+        CostTypeConfig costTypeConfig = this.mapper.selectByPrimaryKey(id);
+        List<CostType> costTypes = this.emapper.getFieldLabelByInCode(costTypeConfig.getDetailsArr(),"xufang");
+        List<Cascader> res = costTypes.stream().map(m->new Cascader(m.getCode(),m.getName(),m.getField())).collect(Collectors.toList());
         return res;
     }
 }

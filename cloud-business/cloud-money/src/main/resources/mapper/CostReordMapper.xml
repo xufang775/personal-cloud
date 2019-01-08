@@ -85,10 +85,12 @@
     <if test="searchType=='month'">
       select costDate,costItemId, b.itemName costItemName,a.remark,b.itemCode,sum(costPrice) costPrice
       ,group_concat(a.costPrice SEPARATOR '||') costPriceAll,group_concat(a.remark SEPARATOR '||') remarkAll
+      ,a.costTypeCode,ctype.name costTypeName,ctype.field costTypeField
       from my_cost.cost_record a
       left join my_cost.cost_item b on a.costItemId = b.id
+      left join my_cost.cost_type ctype on a.costTypeCode = ctype.code
       where a.deleteflag=0 and DATE_FORMAT(a.costDate,'%Y-%m') = #{costMonthStr}
-      group by costDate,costItemId
+      group by costDate,costItemId,costTypeCode
       order by costDate desc
     </if>
     <if test="searchType=='year'">
@@ -96,10 +98,12 @@
       ,group_concat(DATE_FORMAT(a.costDate,'%Y-%m-%d') order by a.costDate SEPARATOR '||') costDateAll
       ,group_concat(a.costPrice order by a.costDate SEPARATOR '||') costPriceAll
       ,group_concat(a.remark order by a.costDate SEPARATOR '||') remarkAll
+      ,a.costTypeCode,ctype.name costTypeName,ctype.field costTypeField
       from my_cost.cost_record a
       left join my_cost.cost_item b on a.costItemId = b.id
+      left join my_cost.cost_type ctype on a.costTypeCode = ctype.code
       where a.deleteflag=0 and DATE_FORMAT(a.costDate,'%Y') =#{costYearStr}
-      group by DATE_FORMAT(a.costDate,'%Y-%m'),costItemId
+      group by DATE_FORMAT(a.costDate,'%Y-%m'),costItemId,costTypeCode
       order by costDate desc
     </if>
   </select>

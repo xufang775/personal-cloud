@@ -22,6 +22,8 @@ public class CostRecordHasDic {
 
     private String costTypeName;
 
+    private String costTypeField;
+
     private Date costDate;
 
     private Double costPrice;

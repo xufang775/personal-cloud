@@ -1,5 +1,5 @@
 package com.personal.cloud.money.service;
-import com.personal.cloud.money.model.Cascader;
+import com.personal.common.util.Cascader;
 import com.personal.common.entity.CostType;
 import java.util.List;
 
@@ -8,5 +8,6 @@ import java.util.List;
  */
 public interface CostTypeService extends BaseService<CostType>{
 
-    public List<Cascader> getCascader();
+    List<Cascader> getKeyLabelList();
+    List<Cascader> getCascader();
 }

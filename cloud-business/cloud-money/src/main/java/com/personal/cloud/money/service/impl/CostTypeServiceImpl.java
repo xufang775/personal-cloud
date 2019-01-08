@@ -2,17 +2,11 @@ package com.personal.cloud.money.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.personal.cloud.money.mapper.CostTypeEMapper;
-import com.personal.cloud.money.model.Cascader;
-import com.personal.cloud.money.model.CostTypeViewModel;
-import com.personal.cloud.money.service.CostItemService;
 import com.personal.cloud.money.service.CostTypeService;
-import com.personal.common.entity.CostItem;
-import com.personal.common.entity.CostItemExample;
 import com.personal.common.entity.CostType;
 import com.personal.common.entity.CostTypeExample;
-import com.personal.common.mapper.CostItemMapper;
 import com.personal.common.mapper.CostTypeMapper;
-import com.personal.common.util.KeyValue;
+import com.personal.common.util.Cascader;
 import com.personal.common.util.PageParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -136,12 +130,9 @@ public class CostTypeServiceImpl implements CostTypeService{
         return this.mapper.deleteByExample(example);
     }
 
-    public List<KeyValue> getKVList(){
-        List<CostType> list = this.getList(null);
-        List<KeyValue> resList = new ArrayList<>();
-        for (CostType item:list) {
-            resList.add(new KeyValue(item.getId(),item.getName(),item.getCode()));
-        }
+    public List<Cascader> getKeyLabelList(){
+        List<CostType> list = this.emapper.getCascader(null,"xufang");
+        List<Cascader> resList =list.stream().map(m-> new Cascader(m.getCode(),m.getName())).collect(toList());
         return resList;
     }
 

@@ -15,4 +15,6 @@ public class CostTypeConfigDetail extends BaseEntity {
     private String configId;
 
     private String costTypeId;
+
+
 }

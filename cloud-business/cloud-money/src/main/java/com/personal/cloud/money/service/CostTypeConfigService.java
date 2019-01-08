@@ -1,7 +1,6 @@
 package com.personal.cloud.money.service;
 
-import com.personal.cloud.money.model.Cascader;
-import com.personal.common.entity.CostType;
+import com.personal.common.util.Cascader;
 import com.personal.common.entity.CostTypeConfig;
 
 import java.util.List;
@@ -11,4 +10,5 @@ import java.util.List;
  */
 public interface CostTypeConfigService extends BaseService<CostTypeConfig>{
 
+    List<Cascader> getDetailsFieldLabel();
 }

@@ -14,4 +14,6 @@ public interface CostTypeEMapper {
     String getMaxCode(@Param("parentCode") String parentCode);
 
     List<CostType> getCascader(@Param("parentCode") String parentCode, @Param("userName") String userName);
+
+    List<CostType> getFieldLabelByInCode(@Param("codeList") List<String> codeList, @Param("userName") String userName);
 }

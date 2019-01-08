@@ -41,4 +41,14 @@
     order by sortNo
   </select>
 
+  <select id="getFieldLabelByInCode" resultType="com.personal.common.entity.CostType">
+    select * from cost_type
+    WHERE deleteFlag = 0 and addUserName='${userName}'
+    and code IN
+    <foreach collection="codeList" item="code" index="i" open="(" close=")" separator=",">
+      #{code}
+    </foreach>
+    order by sortNo
+  </select>
+
 </mapper>

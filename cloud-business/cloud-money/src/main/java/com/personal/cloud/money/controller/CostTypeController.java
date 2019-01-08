@@ -1,14 +1,11 @@
 package com.personal.cloud.money.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.personal.cloud.money.model.Cascader;
-import com.personal.cloud.money.model.CostTypeViewModel;
-import com.personal.cloud.money.service.CostItemService;
 import com.personal.cloud.money.service.CostTypeService;
 import com.personal.cloud.money.util.ResultMap;
 import com.personal.common.entity.CostItem;
 import com.personal.common.entity.CostType;
-import com.personal.common.util.KeyValue;
+import com.personal.common.util.Cascader;
 import com.personal.common.util.PageParam;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -88,8 +85,25 @@ public class CostTypeController extends BaseController {
 //        }
 //    }
 
-    @PostMapping("/dic2")
+    @PostMapping("/getKeyLabelList")
     @ApiOperation(value = "获取消费项目-字典")
+    public ResultMap getKeyLabelList(){
+        try{
+            List<Cascader> list = service.getKeyLabelList();
+            if(list.size()>0){
+                return this.resultMap.success().data(list);
+            } else {
+                return this.resultMap.success().data(list).message("没有记录");
+            }
+
+        } catch (Exception e){
+            e.printStackTrace();
+            logger.error("[获取消费项目-字典]出错："+e.getMessage());
+            return resultMap.fail();
+        }
+    }
+    @PostMapping("/getCascader")
+    @ApiOperation(value = "获取消费项目-级联字典")
     public ResultMap dic2(){
         try{
             List<Cascader> list = service.getCascader();
@@ -101,7 +115,7 @@ public class CostTypeController extends BaseController {
 
         } catch (Exception e){
             e.printStackTrace();
-            logger.error("分页查询出错："+e.getMessage());
+            logger.error("[获取消费项目-级联字典]出错："+e.getMessage());
             return resultMap.fail();
         }
     }

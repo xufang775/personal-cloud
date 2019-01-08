@@ -1,4 +1,4 @@
-package com.personal.cloud.money.model;
+package com.personal.common.util;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -13,14 +13,19 @@ import java.util.List;
 public class Cascader {
 
     public Cascader(){}
-    public Cascader(String value,String label){
+    public Cascader(String value, String label){
         this.value = value;
         this.label = label;
         this.key = value;
         this.field = value;
     }
-
-    public Cascader(String value,String label,List<Cascader> children){
+    public Cascader(String value, String label,String field){
+        this.value = value;
+        this.label = label;
+        this.key = value;
+        this.field = field;
+    }
+    public Cascader(String value, String label, List<Cascader> children){
         this.value = value;
         this.label = label;
         this.children = children;
