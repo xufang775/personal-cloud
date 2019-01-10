@@ -97,26 +97,27 @@ public class CostTypeServiceImpl implements CostTypeService{
             record.setAddDate(new Date());
             record.setEnabled(true);
             record.setDeleteFlag(false);
-            record.setAddUserName("xufang");
+            record.setAddUserName("admin");
             // 处理code
+            String maxCode = "";
             if(record.getParentCode()!=null){
-                String maxCode = this.emapper.getMaxCode(record.getParentCode()[record.getParentCode().length-1]);
+                maxCode = this.emapper.getMaxCode(record.getParentCode()[record.getParentCode().length-1]);
                 if(maxCode !=null){
                     maxCode = (Integer.parseInt(maxCode)+1)+"";
                 } else {
                     maxCode = record.getParentCode()[record.getParentCode().length-1] + "10";
                 }
-                record.setCode(maxCode);
-                record.setSortNo(maxCode);
             } else {
-                String maxCode = this.emapper.getMaxCode(null);
+                maxCode = this.emapper.getMaxCode(null);
                 if(maxCode !=null){
                     maxCode = (Integer.parseInt(maxCode)+1)+"";
+                } else {
+                    maxCode = "10";
                 }
-                record.setCode(maxCode);
-                record.setSortNo(maxCode);
             }
-
+            record.setCode(maxCode);
+            record.setSortNo(maxCode);
+            record.setField("f"+maxCode);
             res = this.mapper.insert(record);
         } else {    // 修改
             res = this.mapper.updateByPrimaryKey(record);
@@ -131,13 +132,13 @@ public class CostTypeServiceImpl implements CostTypeService{
     }
 
     public List<Cascader> getKeyLabelList(){
-        List<CostType> list = this.emapper.getCascader(null,"xufang");
+        List<CostType> list = this.emapper.getCascader(null,"admin");
         List<Cascader> resList =list.stream().map(m-> new Cascader(m.getCode(),m.getName())).collect(toList());
         return resList;
     }
 
     public List<Cascader> getCascader(){
-        List<CostType> list = this.emapper.getCascader(null,"xufang");
+        List<CostType> list = this.emapper.getCascader(null,"admin");
         // --处理一级项目
         List<Cascader> res = list.stream()
                 .filter(m->m.getCode().length()==2)

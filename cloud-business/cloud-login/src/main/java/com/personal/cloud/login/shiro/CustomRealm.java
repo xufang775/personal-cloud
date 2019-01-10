@@ -48,9 +48,9 @@ public class CustomRealm extends AuthorizingRealm {
         if(username == null || !JWTUtil.verify(token,username)){
             throw new AuthenticationException("token认证失败！");
         }
-        String password = sysUserService.getPassword(username);
-        if(password == null){
-            throw new AuthenticationException("该用户还在存在");
+        SysUser user = sysUserService.getOneByUsername(username);
+        if(user == null){
+            throw new AuthenticationException("该用户不存在");
         }
         boolean ban = sysUserService.checkUserEnable(username);
         if(ban != true){
@@ -69,7 +69,7 @@ public class CustomRealm extends AuthorizingRealm {
         System.out.println("————权限认证————");
         String username = JWTUtil.getUsername(principals.toString());
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-        SysUser user = sysUserService.getUserOne(username);
+        SysUser user = sysUserService.getOneByUsername(username);
         // 获得该用户角色
         String role = sysUserService.getRole(username);
         // 每个角色拥有默认的权限

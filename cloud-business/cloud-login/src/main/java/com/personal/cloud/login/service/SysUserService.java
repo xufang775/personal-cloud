@@ -4,13 +4,19 @@ import com.personal.cloud.login.model.UserInfo;
 import com.personal.common.entity.SysRole;
 import com.personal.common.entity.SysUser;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
  * Created by xufan on 2018/11/16.
  */
 public interface SysUserService {
-    SysUser login(SysUser sysUser);
+
+    SysUser getOneByUsername(String userName);
+
+    HashMap<String, Object> getLoginSData(String userName);
+
+    SysUser getUserOne(String userName);
 
     List<SysRole> getRoles();
 
@@ -26,5 +32,5 @@ public interface SysUserService {
 
     String getPermission(String username);
 
-    SysUser getUserOne(String userName);
+
 }

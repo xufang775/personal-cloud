@@ -27,6 +27,7 @@ import java.util.stream.Collectors;
 @Service(value = "CostTypeConfigServiceImpl")
 public class CostTypeConfigServiceImpl implements CostTypeConfigService{
 
+    private String username="admin";
     private final CostTypeConfigMapper mapper;
     private final CostTypeEMapper emapper;
     @Autowired
@@ -74,7 +75,7 @@ public class CostTypeConfigServiceImpl implements CostTypeConfigService{
             record.setAddDate(new Date());
 //            record.setEnabled(true);
             record.setDeleteFlag(false);
-            record.setAddUserName("xufang");
+            record.setAddUserName(username);
             // 处理details
             if(record.getDetailsArr()!=null){
 //                record.setDetails(record.getDetailsArr());
@@ -95,7 +96,7 @@ public class CostTypeConfigServiceImpl implements CostTypeConfigService{
 
 
     public List<Cascader> getCascader(){
-        List<CostType> list = this.emapper.getCascader(null,"xufang");
+        List<CostType> list = this.emapper.getCascader(null,username);
         // --处理一级项目
         List<Cascader> res = list.stream()
                 .filter(m->m.getCode().length()==2)
@@ -124,9 +125,9 @@ public class CostTypeConfigServiceImpl implements CostTypeConfigService{
     }
 
     public List<Cascader> getDetailsFieldLabel(){
-        String id = "39e903ae-7839-447e-914d-38a5a27453cc";
+        String id = "467553c4-3fc8-40f4-9d3a-72cfb5c049af";
         CostTypeConfig costTypeConfig = this.mapper.selectByPrimaryKey(id);
-        List<CostType> costTypes = this.emapper.getFieldLabelByInCode(costTypeConfig.getDetailsArr(),"xufang");
+        List<CostType> costTypes = this.emapper.getFieldLabelByInCode(costTypeConfig.getDetailsArr(),username);
         List<Cascader> res = costTypes.stream().map(m->new Cascader(m.getCode(),m.getName(),m.getField())).collect(Collectors.toList());
         return res;
     }

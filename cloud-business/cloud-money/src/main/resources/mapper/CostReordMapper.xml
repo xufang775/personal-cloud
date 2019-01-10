@@ -18,7 +18,7 @@
           parameterType="com.personal.cloud.money.model.CostRecordSearch"
           resultType="com.personal.cloud.money.model.CostRecordHasDic">
     SELECT a.*
-    ,(select itemName from cost_item b where b.id=a.costItemId) as costItemName
+--     ,(select itemName from cost_item b where b.id=a.costItemId) as costItemName
     ,(select name from cost_type c where c.code=a.costTypeCode) as costTypeName
     FROM cost_record a
     WHERE a.deleteFlag = 0
@@ -52,7 +52,7 @@
   <select id="selectAllByDate"
           parameterType="com.personal.cloud.money.model.CostRecordSearch"
           resultType="com.personal.cloud.money.model.CostRecordHasDic">
-    select costDate,sum(costPrice) costPrice from my_cost.cost_record a
+    select costDate,sum(costPrice) costPrice from cost_record a
     where deleteflag=0
     <if test="costDateStart != null ">
       and a.costDate >= #{costDateStart}
@@ -86,9 +86,9 @@
       select costDate,costItemId, b.itemName costItemName,a.remark,b.itemCode,sum(costPrice) costPrice
       ,group_concat(a.costPrice SEPARATOR '||') costPriceAll,group_concat(a.remark SEPARATOR '||') remarkAll
       ,a.costTypeCode,ctype.name costTypeName,ctype.field costTypeField
-      from my_cost.cost_record a
-      left join my_cost.cost_item b on a.costItemId = b.id
-      left join my_cost.cost_type ctype on a.costTypeCode = ctype.code
+      from cost_record a
+      left join cost_item b on a.costItemId = b.id
+      left join cost_type ctype on a.costTypeCode = ctype.code
       where a.deleteflag=0 and DATE_FORMAT(a.costDate,'%Y-%m') = #{costMonthStr}
       group by costDate,costItemId,costTypeCode
       order by costDate desc
@@ -99,9 +99,9 @@
       ,group_concat(a.costPrice order by a.costDate SEPARATOR '||') costPriceAll
       ,group_concat(a.remark order by a.costDate SEPARATOR '||') remarkAll
       ,a.costTypeCode,ctype.name costTypeName,ctype.field costTypeField
-      from my_cost.cost_record a
-      left join my_cost.cost_item b on a.costItemId = b.id
-      left join my_cost.cost_type ctype on a.costTypeCode = ctype.code
+      from cost_record a
+      left join cost_item b on a.costItemId = b.id
+      left join cost_type ctype on a.costTypeCode = ctype.code
       where a.deleteflag=0 and DATE_FORMAT(a.costDate,'%Y') =#{costYearStr}
       group by DATE_FORMAT(a.costDate,'%Y-%m'),costItemId,costTypeCode
       order by costDate desc
@@ -109,7 +109,7 @@
   </select>
   <select id="getMonthCensus" parameterType="com.personal.cloud.money.model.CostRecordSearch"
           resultType="com.personal.cloud.money.model.CostRecordHasDic">
-    select date_format(costDate, '%Y-%m') costMonth,sum(costPrice) costPrice from my_cost.cost_record
+    select date_format(costDate, '%Y-%m') costMonth,sum(costPrice) costPrice from cost_record
     where deleteFlag=0
     group by date_format(costDate, '%Y-%m')
     order by  date_format(costDate, '%Y-%m')

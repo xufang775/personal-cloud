@@ -5,6 +5,7 @@ import com.personal.cloud.login.model.UserInfo;
 import com.personal.cloud.login.service.SysUserService;
 import com.personal.cloud.login.shiro.JWTUtil;
 import com.personal.cloud.login.model.ResultMap;
+import com.personal.common.entity.SysUser;
 import com.personal.common.util.MyRequestParam;
 import io.swagger.annotations.Api;
 import org.apache.shiro.SecurityUtils;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.UnavailableException;
+import java.util.HashMap;
 
 /**
  * Created by xufan on 2018/11/9.
@@ -32,33 +34,20 @@ public class LoginController {
         this.sysUserService = service;
         this.resultMap = result;
     }
+
     @PostMapping("/login")
     public ResultMap login(@RequestBody MyRequestParam<LoginParam> loginInfo){
-        String realPassword = sysUserService.getPassword(loginInfo.data.password);
-        UserInfo user = sysUserService.getUserInfo(loginInfo.data.username);
-        if(realPassword == null){
-            return resultMap.fail().message("用户名错误");
-        } else if (!realPassword.equals(loginInfo.data.password)){
-            return resultMap.fail().message("密码错误");
-        } else {
-            return resultMap.success()
-                    .data(user)
-                    .message(JWTUtil.createToken(loginInfo.data.username));
-        }
-    }
 
-    @PostMapping("/login1")
-    public ResultMap login1(@RequestBody LoginParam loginInfo){
-        String realPassword = sysUserService.getPassword(loginInfo.password);
-        UserInfo user = sysUserService.getUserInfo(loginInfo.username);
-        if(realPassword == null){
-            return resultMap.fail().message("用户名错误");
-        } else if (!realPassword.equals(loginInfo.password)){
+        SysUser loginUser = sysUserService.getOneByUsername(loginInfo.data.username);
+        if(loginUser ==null){
+            return this.resultMap.fail().message("用户名错误");
+        } else if (!loginUser.getPassword2().equals(loginInfo.data.password)){
             return resultMap.fail().message("密码错误");
         } else {
+            HashMap<String,Object> loginSData = sysUserService.getLoginSData(loginInfo.data.username);
             return resultMap.success()
-                    .data(user)
-                    .message(JWTUtil.createToken(loginInfo.username));
+                    .data(loginSData)
+                    .message(JWTUtil.createToken(loginInfo.data.username));
         }
     }
 

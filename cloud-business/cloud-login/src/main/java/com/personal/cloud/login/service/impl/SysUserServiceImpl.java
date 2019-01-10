@@ -1,6 +1,7 @@
 package com.personal.cloud.login.service.impl;
 
 import com.personal.cloud.login.mapper.UserMapper;
+import com.personal.cloud.login.model.ResultMap;
 import com.personal.cloud.login.model.UserInfo;
 import com.personal.cloud.login.service.SysUserService;
 import com.personal.common.entity.SysRole;
@@ -9,6 +10,7 @@ import com.personal.common.mapper.SysRoleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -16,15 +18,51 @@ import java.util.List;
  */
 @Service(value = "SysUserService")
 public class SysUserServiceImpl implements SysUserService {
+
     @Autowired
     public UserMapper sysUserMapper;
     @Autowired
     public SysRoleMapper sysRoleMapper;
 
-    @Override
-    public SysUser login(SysUser sysUser) {
-        SysUser user = sysUserMapper.selectOne(sysUser);
-        return user;
+    /**
+     * 根据用户名获取用户
+     * @param userName
+     * @return
+     */
+    public SysUser getOneByUsername(String userName){
+        SysUser params = new SysUser();
+        params.setUserName(userName);
+        return this.sysUserMapper.selectOne(params);
+    }
+
+    /**
+     * 获取登录成功后，返回的数据
+     * @param userName
+     * @return
+     */
+    public HashMap<String, Object> getLoginSData(String userName){
+        HashMap<String, Object> res = new HashMap<String, Object>();
+
+        SysUser user = this.getOneByUsername(userName);
+        List<SysRole> list = this.sysRoleMapper.selectAll();
+
+        res.put("name",user.getUserName());
+        res.put("roles",list);
+
+        return res;
+    }
+
+    /**
+     * 检查用户激活状态
+     * @param username
+     * @return
+     */
+    public boolean checkUserEnable(String username){
+        SysUser user = this.getOneByUsername(username);
+        if(user != null){
+            return user.getEnabled();
+        }
+        return false;
     }
 
     @Override
@@ -56,10 +94,7 @@ public class SysUserServiceImpl implements SysUserService {
         SysUser user = this.sysUserMapper.selectOne(userParam);
         return user;
     }
-    public boolean checkUserEnable(String username){
-        SysUser user = GetOneUser(username);
-        return user.getEnabled();
-    }
+
     @Override
     public String getPassword(String username){
         SysUser user = GetOneUser(username);
