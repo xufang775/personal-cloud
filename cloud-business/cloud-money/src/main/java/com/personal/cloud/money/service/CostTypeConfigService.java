@@ -9,6 +9,6 @@ import java.util.List;
  * Created by xufan on 2018/11/16.
  */
 public interface CostTypeConfigService extends BaseService<CostTypeConfig>{
-
+    List<Cascader> getKeyLabelList();
     List<Cascader> getDetailsFieldLabel();
 }

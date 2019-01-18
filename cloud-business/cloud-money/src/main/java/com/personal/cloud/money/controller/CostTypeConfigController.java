@@ -75,4 +75,22 @@ public class CostTypeConfigController extends BaseController {
         }
     }
 
+    @PostMapping("/getKeyLabelList")
+    @ApiOperation(value = "获取消费项目-字典")
+    public ResultMap getKeyLabelList(){
+        try{
+            List<com.personal.common.util.Cascader> list = service.getKeyLabelList();
+            if(list.size()>0){
+                return this.resultMap.success().data(list);
+            } else {
+                return this.resultMap.success().data(list).message("没有记录");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.error("[获取消费项目-字典]出错："+e.getMessage());
+            return resultMap.fail();
+        }
+    }
+
 }

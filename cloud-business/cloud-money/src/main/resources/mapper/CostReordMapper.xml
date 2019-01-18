@@ -121,11 +121,11 @@
       <!--SELECT UUID()-->
     <!--</selectKey>-->
     insert into cost_record
-    (id,costItemId,costDate,costPrice,addDate,remark,deleteFlag)
+    (id,costItemId,costDate,costTypeCode,costPrice,addDate,remark,deleteFlag)
     values
     <foreach item="item" collection="list" separator="," index="">
       (
-      #{item.id},#{item.costItemId},#{item.costDate},#{item.costPrice},#{item.addDate},#{item.remark},0
+      #{item.id},#{item.costItemId},#{item.costDate},#{item.costTypeCode},#{item.costPrice},#{item.addDate},#{item.remark},0
       )
     </foreach>
   </insert>

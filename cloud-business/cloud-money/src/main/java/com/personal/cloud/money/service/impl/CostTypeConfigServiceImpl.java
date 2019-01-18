@@ -21,6 +21,8 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toList;
+
 /**
  * Created by xufan on 2018/11/16.
  */
@@ -130,5 +132,10 @@ public class CostTypeConfigServiceImpl implements CostTypeConfigService{
         List<CostType> costTypes = this.emapper.getFieldLabelByInCode(costTypeConfig.getDetailsArr(),username);
         List<Cascader> res = costTypes.stream().map(m->new Cascader(m.getCode(),m.getName(),m.getField())).collect(Collectors.toList());
         return res;
+    }
+    public List<Cascader> getKeyLabelList(){
+        List<CostTypeConfig> list = this.mapper.selectAll();
+        List<Cascader> resList = list.stream().map(m-> new Cascader(m.getId(),m.getConfigName())).collect(toList());
+        return resList;
     }
 }
