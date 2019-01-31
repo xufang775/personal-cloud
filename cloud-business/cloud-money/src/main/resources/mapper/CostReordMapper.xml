@@ -18,7 +18,6 @@
           parameterType="com.personal.cloud.money.model.CostRecordSearch"
           resultType="com.personal.cloud.money.model.CostRecordHasDic">
     SELECT a.*
---     ,(select itemName from cost_item b where b.id=a.costItemId) as costItemName
     ,(select name from cost_type c where c.code=a.costTypeCode) as costTypeName
     FROM cost_record a
     WHERE a.deleteFlag = 0
@@ -45,6 +44,9 @@
     </if>
     <if test="remark != null ">
       and a.remark like concat('%',#{remark},'%')
+    </if>
+    <if test="costTypeCode != null">
+      and a.costTypeCode like concat(#{costTypeCode},'%')
     </if>
     order by a.costDate desc
   </select>
