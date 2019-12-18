@@ -17,8 +17,8 @@ public class Test1Controller {
 //        return this.msg;
 //    }
 
-    @GetMapping("test2")
-    public String test2(){
-        return "测试";
-    }
+//    @GetMapping("test2")
+//    public String test2(){
+//        return "测试";
+//    }
 }
