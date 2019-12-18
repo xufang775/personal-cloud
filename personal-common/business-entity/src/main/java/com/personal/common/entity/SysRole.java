@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 @Getter
 @Setter
-@Table(name = "sys_role")
+@Table(name = "Sys_Role")
 public class SysRole extends BaseEntity {
 
     private String roleCode;
@@ -17,4 +17,13 @@ public class SysRole extends BaseEntity {
 
     private String permission;
 
+    private String remark;
+
+    private Integer sortNo;
+
+    private String addDate;
+
+    private Boolean deleteFlag;
+
+    private Boolean enabled;
 }

@@ -1,7 +1,6 @@
 package com.personal.cloud.login.service;
 
 import com.personal.cloud.login.model.UserInfo;
-import com.personal.common.entity.SysRole;
 import com.personal.common.entity.SysUser;
 
 import java.util.HashMap;

@@ -1,12 +1,9 @@
 package com.personal.cloud.login.service.impl;
 
 import com.personal.cloud.login.mapper.UserMapper;
-import com.personal.cloud.login.model.ResultMap;
 import com.personal.cloud.login.model.UserInfo;
 import com.personal.cloud.login.service.SysUserService;
-import com.personal.common.entity.SysRole;
 import com.personal.common.entity.SysUser;
-import com.personal.common.mapper.SysRoleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

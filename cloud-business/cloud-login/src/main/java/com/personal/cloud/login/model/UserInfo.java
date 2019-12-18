@@ -1,6 +1,5 @@
 package com.personal.cloud.login.model;
 
-import com.personal.common.entity.SysRole;
 import lombok.Getter;
 import lombok.Setter;
 

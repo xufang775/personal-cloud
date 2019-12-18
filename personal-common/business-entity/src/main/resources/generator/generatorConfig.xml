@@ -20,7 +20,7 @@
                         <!--connectionURL="${spring.datasource.url}"-->
                         <!--userId="${spring.datasource.username}"-->
                         <!--password="${spring.datasource.password}"></jdbcConnection>-->
-        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver" connectionURL="jdbc:mysql://60.205.149.16/my_cost?serverTimezone=GMT%2B8" userId="root" password="jz123!@#"></jdbcConnection>
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver" connectionURL="jdbc:mysql://60.205.149.16/personal_cloud_dev_new?serverTimezone=GMT%2B8" userId="root" password="jz123!@#"></jdbcConnection>
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
@@ -61,14 +61,18 @@
             <!--<property name="useActualColumnNames" value="true"/>-->
             <!--&lt;!&ndash;<property name="modelOnly" value="true"/>&ndash;&gt;-->
         <!--</table>-->
-        <table tableName="cost_type_config">
-            <property name="useActualColumnNames" value="true"/>
-            <!--<property name="modelOnly" value="true"/>-->
+        <table tableName="sys_role">
+        <property name="useActualColumnNames" value="true"/>
+        <!--<property name="modelOnly" value="true"/>-->
         </table>
-        <table tableName="cost_type_config_detail">
-            <property name="useActualColumnNames" value="true"/>
-            <!--<property name="modelOnly" value="true"/>-->
-        </table>
+        <!--<table tableName="cost_type_config">-->
+            <!--<property name="useActualColumnNames" value="true"/>-->
+            <!--&lt;!&ndash;<property name="modelOnly" value="true"/>&ndash;&gt;-->
+        <!--</table>-->
+        <!--<table tableName="cost_type_config_detail">-->
+            <!--<property name="useActualColumnNames" value="true"/>-->
+            <!--&lt;!&ndash;<property name="modelOnly" value="true"/>&ndash;&gt;-->
+        <!--</table>-->
         <!--<table tableName="cost_tag">-->
             <!--<property name="useActualColumnNames" value="true"/>-->
         <!--</table>-->

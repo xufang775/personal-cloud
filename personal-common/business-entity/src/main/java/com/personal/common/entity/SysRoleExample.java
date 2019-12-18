@@ -383,6 +383,326 @@ public class SysRoleExample {
             addCriterion("permission not between", value1, value2, "permission");
             return (Criteria) this;
         }
+
+        public Criteria andRemarkIsNull() {
+            addCriterion("remark is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkIsNotNull() {
+            addCriterion("remark is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkEqualTo(String value) {
+            addCriterion("remark =", value, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkNotEqualTo(String value) {
+            addCriterion("remark <>", value, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkGreaterThan(String value) {
+            addCriterion("remark >", value, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkGreaterThanOrEqualTo(String value) {
+            addCriterion("remark >=", value, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkLessThan(String value) {
+            addCriterion("remark <", value, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkLessThanOrEqualTo(String value) {
+            addCriterion("remark <=", value, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkLike(String value) {
+            addCriterion("remark like", value, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkNotLike(String value) {
+            addCriterion("remark not like", value, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkIn(List<String> values) {
+            addCriterion("remark in", values, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkNotIn(List<String> values) {
+            addCriterion("remark not in", values, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkBetween(String value1, String value2) {
+            addCriterion("remark between", value1, value2, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkNotBetween(String value1, String value2) {
+            addCriterion("remark not between", value1, value2, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortNoIsNull() {
+            addCriterion("sortNo is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortNoIsNotNull() {
+            addCriterion("sortNo is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortNoEqualTo(Integer value) {
+            addCriterion("sortNo =", value, "sortNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortNoNotEqualTo(Integer value) {
+            addCriterion("sortNo <>", value, "sortNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortNoGreaterThan(Integer value) {
+            addCriterion("sortNo >", value, "sortNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortNoGreaterThanOrEqualTo(Integer value) {
+            addCriterion("sortNo >=", value, "sortNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortNoLessThan(Integer value) {
+            addCriterion("sortNo <", value, "sortNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortNoLessThanOrEqualTo(Integer value) {
+            addCriterion("sortNo <=", value, "sortNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortNoIn(List<Integer> values) {
+            addCriterion("sortNo in", values, "sortNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortNoNotIn(List<Integer> values) {
+            addCriterion("sortNo not in", values, "sortNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortNoBetween(Integer value1, Integer value2) {
+            addCriterion("sortNo between", value1, value2, "sortNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortNoNotBetween(Integer value1, Integer value2) {
+            addCriterion("sortNo not between", value1, value2, "sortNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddDateIsNull() {
+            addCriterion("addDate is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddDateIsNotNull() {
+            addCriterion("addDate is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddDateEqualTo(String value) {
+            addCriterion("addDate =", value, "addDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddDateNotEqualTo(String value) {
+            addCriterion("addDate <>", value, "addDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddDateGreaterThan(String value) {
+            addCriterion("addDate >", value, "addDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddDateGreaterThanOrEqualTo(String value) {
+            addCriterion("addDate >=", value, "addDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddDateLessThan(String value) {
+            addCriterion("addDate <", value, "addDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddDateLessThanOrEqualTo(String value) {
+            addCriterion("addDate <=", value, "addDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddDateLike(String value) {
+            addCriterion("addDate like", value, "addDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddDateNotLike(String value) {
+            addCriterion("addDate not like", value, "addDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddDateIn(List<String> values) {
+            addCriterion("addDate in", values, "addDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddDateNotIn(List<String> values) {
+            addCriterion("addDate not in", values, "addDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddDateBetween(String value1, String value2) {
+            addCriterion("addDate between", value1, value2, "addDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddDateNotBetween(String value1, String value2) {
+            addCriterion("addDate not between", value1, value2, "addDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeleteFlagIsNull() {
+            addCriterion("deleteFlag is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeleteFlagIsNotNull() {
+            addCriterion("deleteFlag is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeleteFlagEqualTo(Boolean value) {
+            addCriterion("deleteFlag =", value, "deleteFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeleteFlagNotEqualTo(Boolean value) {
+            addCriterion("deleteFlag <>", value, "deleteFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeleteFlagGreaterThan(Boolean value) {
+            addCriterion("deleteFlag >", value, "deleteFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeleteFlagGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("deleteFlag >=", value, "deleteFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeleteFlagLessThan(Boolean value) {
+            addCriterion("deleteFlag <", value, "deleteFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeleteFlagLessThanOrEqualTo(Boolean value) {
+            addCriterion("deleteFlag <=", value, "deleteFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeleteFlagIn(List<Boolean> values) {
+            addCriterion("deleteFlag in", values, "deleteFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeleteFlagNotIn(List<Boolean> values) {
+            addCriterion("deleteFlag not in", values, "deleteFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeleteFlagBetween(Boolean value1, Boolean value2) {
+            addCriterion("deleteFlag between", value1, value2, "deleteFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeleteFlagNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("deleteFlag not between", value1, value2, "deleteFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnabledIsNull() {
+            addCriterion("enabled is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnabledIsNotNull() {
+            addCriterion("enabled is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnabledEqualTo(Boolean value) {
+            addCriterion("enabled =", value, "enabled");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnabledNotEqualTo(Boolean value) {
+            addCriterion("enabled <>", value, "enabled");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnabledGreaterThan(Boolean value) {
+            addCriterion("enabled >", value, "enabled");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnabledGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("enabled >=", value, "enabled");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnabledLessThan(Boolean value) {
+            addCriterion("enabled <", value, "enabled");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnabledLessThanOrEqualTo(Boolean value) {
+            addCriterion("enabled <=", value, "enabled");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnabledIn(List<Boolean> values) {
+            addCriterion("enabled in", values, "enabled");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnabledNotIn(List<Boolean> values) {
+            addCriterion("enabled not in", values, "enabled");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnabledBetween(Boolean value1, Boolean value2) {
+            addCriterion("enabled between", value1, value2, "enabled");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnabledNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("enabled not between", value1, value2, "enabled");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
